@@ -27,6 +27,7 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <SFML/Window/EglContext.hpp>
+#include <SFML/Window/EGLCheck.hpp>
 #include <SFML/Window/WindowImpl.hpp>
 #include <SFML/System/Err.hpp>
 #include <SFML/System/Sleep.hpp>

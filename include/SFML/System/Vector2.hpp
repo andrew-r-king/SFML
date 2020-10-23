@@ -44,7 +44,7 @@ public:
     /// Creates a Vector2(0, 0).
     ///
     ////////////////////////////////////////////////////////////
-    Vector2();
+    constexpr Vector2() = default;
 
     ////////////////////////////////////////////////////////////
     /// \brief Construct the vector from its coordinates
@@ -53,7 +53,7 @@ public:
     /// \param Y Y coordinate
     ///
     ////////////////////////////////////////////////////////////
-    Vector2(T X, T Y);
+    constexpr Vector2(const T inX, const T inY);
 
     ////////////////////////////////////////////////////////////
     /// \brief Construct the vector from another type of vector
@@ -67,13 +67,13 @@ public:
     ///
     ////////////////////////////////////////////////////////////
     template <typename U>
-    explicit Vector2(const Vector2<U>& vector);
+	constexpr Vector2(const Vector2<U>& inVector);
 
     ////////////////////////////////////////////////////////////
     // Member data
     ////////////////////////////////////////////////////////////
-    T x; //!< X coordinate of the vector
-    T y; //!< Y coordinate of the vector
+    T x = static_cast<T>(0); //!< X coordinate of the vector
+    T y = static_cast<T>(0); //!< Y coordinate of the vector
 };
 
 ////////////////////////////////////////////////////////////
@@ -86,7 +86,7 @@ public:
 ///
 ////////////////////////////////////////////////////////////
 template <typename T>
-Vector2<T> operator -(const Vector2<T>& right);
+constexpr Vector2<T> operator-(const Vector2<T>& right);
 
 ////////////////////////////////////////////////////////////
 /// \relates Vector2
@@ -101,8 +101,8 @@ Vector2<T> operator -(const Vector2<T>& right);
 /// \return Reference to \a left
 ///
 ////////////////////////////////////////////////////////////
-template <typename T>
-Vector2<T>& operator +=(Vector2<T>& left, const Vector2<T>& right);
+template <typename T, typename U>
+constexpr Vector2<T>& operator+=(Vector2<T>& left, const Vector2<U>& right);
 
 ////////////////////////////////////////////////////////////
 /// \relates Vector2
@@ -117,8 +117,8 @@ Vector2<T>& operator +=(Vector2<T>& left, const Vector2<T>& right);
 /// \return Reference to \a left
 ///
 ////////////////////////////////////////////////////////////
-template <typename T>
-Vector2<T>& operator -=(Vector2<T>& left, const Vector2<T>& right);
+template <typename T, typename U>
+constexpr Vector2<T>& operator-=(Vector2<T>& left, const Vector2<U>& right);
 
 ////////////////////////////////////////////////////////////
 /// \relates Vector2
@@ -130,8 +130,8 @@ Vector2<T>& operator -=(Vector2<T>& left, const Vector2<T>& right);
 /// \return Memberwise addition of both vectors
 ///
 ////////////////////////////////////////////////////////////
-template <typename T>
-Vector2<T> operator +(const Vector2<T>& left, const Vector2<T>& right);
+template <typename T, typename U>
+constexpr Vector2<T> operator+(const Vector2<T>& left, const Vector2<U>& right);
 
 ////////////////////////////////////////////////////////////
 /// \relates Vector2
@@ -143,8 +143,8 @@ Vector2<T> operator +(const Vector2<T>& left, const Vector2<T>& right);
 /// \return Memberwise subtraction of both vectors
 ///
 ////////////////////////////////////////////////////////////
-template <typename T>
-Vector2<T> operator -(const Vector2<T>& left, const Vector2<T>& right);
+template <typename T, typename U>
+constexpr Vector2<T> operator-(const Vector2<T>& left, const Vector2<U>& right);
 
 ////////////////////////////////////////////////////////////
 /// \relates Vector2
@@ -156,8 +156,8 @@ Vector2<T> operator -(const Vector2<T>& left, const Vector2<T>& right);
 /// \return Memberwise multiplication by \a right
 ///
 ////////////////////////////////////////////////////////////
-template <typename T>
-Vector2<T> operator *(const Vector2<T>& left, T right);
+template <typename T, typename U>
+constexpr Vector2<T> operator*(const Vector2<T>& left, U right);
 
 ////////////////////////////////////////////////////////////
 /// \relates Vector2
@@ -169,8 +169,8 @@ Vector2<T> operator *(const Vector2<T>& left, T right);
 /// \return Memberwise multiplication by \a left
 ///
 ////////////////////////////////////////////////////////////
-template <typename T>
-Vector2<T> operator *(T left, const Vector2<T>& right);
+template <typename T, typename U>
+constexpr Vector2<T> operator*(U left, const Vector2<T>& right); // TODO: eval further
 
 ////////////////////////////////////////////////////////////
 /// \relates Vector2
@@ -185,8 +185,8 @@ Vector2<T> operator *(T left, const Vector2<T>& right);
 /// \return Reference to \a left
 ///
 ////////////////////////////////////////////////////////////
-template <typename T>
-Vector2<T>& operator *=(Vector2<T>& left, T right);
+template <typename T, typename U>
+constexpr Vector2<T>& operator*=(Vector2<T>& left, U right);
 
 ////////////////////////////////////////////////////////////
 /// \relates Vector2
@@ -198,8 +198,8 @@ Vector2<T>& operator *=(Vector2<T>& left, T right);
 /// \return Memberwise division by \a right
 ///
 ////////////////////////////////////////////////////////////
-template <typename T>
-Vector2<T> operator /(const Vector2<T>& left, T right);
+template <typename T, typename U>
+constexpr Vector2<T> operator/(const Vector2<T>& left, U right);
 
 ////////////////////////////////////////////////////////////
 /// \relates Vector2
@@ -214,8 +214,8 @@ Vector2<T> operator /(const Vector2<T>& left, T right);
 /// \return Reference to \a left
 ///
 ////////////////////////////////////////////////////////////
-template <typename T>
-Vector2<T>& operator /=(Vector2<T>& left, T right);
+template <typename T, typename U>
+constexpr Vector2<T>& operator/=(Vector2<T>& left, U right);
 
 ////////////////////////////////////////////////////////////
 /// \relates Vector2
@@ -229,8 +229,8 @@ Vector2<T>& operator /=(Vector2<T>& left, T right);
 /// \return True if \a left is equal to \a right
 ///
 ////////////////////////////////////////////////////////////
-template <typename T>
-bool operator ==(const Vector2<T>& left, const Vector2<T>& right);
+template <typename T, typename U>
+constexpr bool operator==(const Vector2<T>& left, const Vector2<U>& right);
 
 ////////////////////////////////////////////////////////////
 /// \relates Vector2
@@ -244,17 +244,18 @@ bool operator ==(const Vector2<T>& left, const Vector2<T>& right);
 /// \return True if \a left is not equal to \a right
 ///
 ////////////////////////////////////////////////////////////
-template <typename T>
-bool operator !=(const Vector2<T>& left, const Vector2<T>& right);
-
-#include <SFML/System/Vector2.inl>
+template <typename T, typename U>
+constexpr bool operator!=(const Vector2<T>& left, const Vector2<U>& right);
 
 // Define the most common types
-typedef Vector2<int>          Vector2i;
-typedef Vector2<unsigned int> Vector2u;
-typedef Vector2<float>        Vector2f;
+using Vector2i = Vector2<int>;
+using Vector2f = Vector2<float>;
+using Vector2u = Vector2<unsigned int>;
+using Vec2s = Vector2<short>;
 
 } // namespace sf
+
+#include <SFML/System/Vector2.inl>
 
 
 #endif // SFML_VECTOR2_HPP
@@ -270,7 +271,7 @@ typedef Vector2<float>        Vector2f;
 /// a velocity, etc.
 ///
 /// The template parameter T is the type of the coordinates. It
-/// can be any type that supports arithmetic operations (+, -, /, *)
+/// can be any type that supports typename operations (+, -, /, *)
 /// and comparisons (==, !=), for example int or float.
 ///
 /// You generally don't have to care about the templated form (sf::Vector2<T>),

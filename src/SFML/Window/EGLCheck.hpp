@@ -37,22 +37,6 @@ namespace sf
 namespace priv
 {
 ////////////////////////////////////////////////////////////
-/// Let's define a macro to quickly check every EGL API call
-////////////////////////////////////////////////////////////
-#ifdef SFML_DEBUG
-
-    // In debug mode, perform a test on every EGL call
-    // The do-while loop is needed so that glCheck can be used as a single statement in if/else branches
-    #define eglCheck(expr) do { expr; sf::priv::eglCheckError(__FILE__, __LINE__, #expr); } while (false)
-
-#else
-
-    // Else, we don't add any overhead
-    #define eglCheck(x) (x)
-
-#endif
-
-////////////////////////////////////////////////////////////
 /// \brief Check the last EGL error
 ///
 /// \param file Source file where the call is located
@@ -64,6 +48,22 @@ void eglCheckError(const char* file, unsigned int line, const char* expression);
 
 } // namespace priv
 } // namespace sf
+
+////////////////////////////////////////////////////////////
+/// Let's define a macro to quickly check every EGL API call
+////////////////////////////////////////////////////////////
+#ifdef SFML_DEBUG
+
+    // In debug mode, perform a test on every EGL call
+    // The do-while loop is needed so that glCheck can be used as a single statement in if/else branches
+    #define eglCheck(expr) do { expr; ::sf::priv::eglCheckError(__FILE__, __LINE__, #expr); } while (false)
+
+#else
+
+    // Else, we don't add any overhead
+    #define eglCheck(x) (x)
+
+#endif
 
 
 #endif // SFML_EGLCHECK_HPP

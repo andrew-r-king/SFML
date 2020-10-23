@@ -23,139 +23,137 @@
 ////////////////////////////////////////////////////////////
 
 
+#include <SFML/System/Vector2.hpp>
+#include <SFML/Config.hpp>
+
+#include <type_traits>
+
+namespace sf
+{
 ////////////////////////////////////////////////////////////
 template <typename T>
-inline Vector2<T>::Vector2() :
-x(0),
-y(0)
+constexpr Vector2<T>::Vector2(const T inX, const T inY) :
+	x(inX),
+	y(inY)
 {
-
-}
-
-
-////////////////////////////////////////////////////////////
-template <typename T>
-inline Vector2<T>::Vector2(T X, T Y) :
-x(X),
-y(Y)
-{
-
 }
 
 
 ////////////////////////////////////////////////////////////
 template <typename T>
 template <typename U>
-inline Vector2<T>::Vector2(const Vector2<U>& vector) :
-x(static_cast<T>(vector.x)),
-y(static_cast<T>(vector.y))
+constexpr Vector2<T>::Vector2(const Vector2<U>& inVector) :
+	x(static_cast<T>(inVector.x)),
+	y(static_cast<T>(inVector.y))
 {
 }
 
 
 ////////////////////////////////////////////////////////////
 template <typename T>
-inline Vector2<T> operator -(const Vector2<T>& right)
+constexpr Vector2<T> operator-(const Vector2<T>& right)
 {
     return Vector2<T>(-right.x, -right.y);
 }
 
 
 ////////////////////////////////////////////////////////////
-template <typename T>
-inline Vector2<T>& operator +=(Vector2<T>& left, const Vector2<T>& right)
+template <typename T, typename U>
+constexpr Vector2<T>& operator+=(Vector2<T>& left, const Vector2<U>& right)
 {
-    left.x += right.x;
-    left.y += right.y;
+	left.x += static_cast<T>(right.x);
+	left.y += static_cast<T>(right.y);
 
-    return left;
+	return left;
 }
 
 
 ////////////////////////////////////////////////////////////
-template <typename T>
-inline Vector2<T>& operator -=(Vector2<T>& left, const Vector2<T>& right)
+template <typename T, typename U>
+constexpr Vector2<T>& operator-=(Vector2<T>& left, const Vector2<U>& right)
 {
-    left.x -= right.x;
-    left.y -= right.y;
+	left.x -= static_cast<T>(right.x);
+	left.y -= static_cast<T>(right.y);
 
-    return left;
+	return left;
 }
 
 
 ////////////////////////////////////////////////////////////
-template <typename T>
-inline Vector2<T> operator +(const Vector2<T>& left, const Vector2<T>& right)
+template <typename T, typename U>
+constexpr Vector2<T> operator+(const Vector2<T>& left, const Vector2<U>& right)
 {
-    return Vector2<T>(left.x + right.x, left.y + right.y);
+	return Vector2<T>(left.x + static_cast<T>(right.x), left.y + static_cast<T>(right.y));
 }
 
 
 ////////////////////////////////////////////////////////////
-template <typename T>
-inline Vector2<T> operator -(const Vector2<T>& left, const Vector2<T>& right)
+template <typename T, typename U>
+constexpr Vector2<T> operator-(const Vector2<T>& left, const Vector2<U>& right)
 {
-    return Vector2<T>(left.x - right.x, left.y - right.y);
+	return Vector2<T>(left.x - static_cast<T>(right.x), left.y - static_cast<T>(right.y));
 }
 
 
 ////////////////////////////////////////////////////////////
-template <typename T>
-inline Vector2<T> operator *(const Vector2<T>& left, T right)
+template <typename T, typename U>
+constexpr Vector2<T> operator*(const Vector2<T>& left, U right)
 {
-    return Vector2<T>(left.x * right, left.y * right);
+	return Vector2<T>(left.x * static_cast<T>(right), left.y * static_cast<T>(right));
 }
 
 
 ////////////////////////////////////////////////////////////
-template <typename T>
-inline Vector2<T> operator *(T left, const Vector2<T>& right)
+template <typename T, typename U>
+constexpr Vector2<T> operator*(U left, const Vector2<T>& right)
 {
-    return Vector2<T>(right.x * left, right.y * left);
+	return Vector2<T>(right.x * static_cast<T>(left), right.y * static_cast<T>(left));
 }
 
 
 ////////////////////////////////////////////////////////////
-template <typename T>
-inline Vector2<T>& operator *=(Vector2<T>& left, T right)
+template <typename T, typename U>
+constexpr Vector2<T>& operator*=(Vector2<T>& left, U right)
 {
-    left.x *= right;
-    left.y *= right;
+	left.x *= static_cast<T>(right);
+	left.y *= static_cast<T>(right);
 
-    return left;
+	return left;
 }
 
 
 ////////////////////////////////////////////////////////////
-template <typename T>
-inline Vector2<T> operator /(const Vector2<T>& left, T right)
+template <typename T, typename U>
+constexpr Vector2<T> operator/(const Vector2<T>& left, U right)
 {
-    return Vector2<T>(left.x / right, left.y / right);
+	return Vector2<T>(left.x / static_cast<T>(right), left.y / static_cast<T>(right));
 }
 
 
 ////////////////////////////////////////////////////////////
-template <typename T>
-inline Vector2<T>& operator /=(Vector2<T>& left, T right)
+template <typename T, typename U>
+constexpr Vector2<T>& operator/=(Vector2<T>& left, U right)
 {
-    left.x /= right;
-    left.y /= right;
+	left.x /= static_cast<T>(right);
+	left.y /= static_cast<T>(right);
 
-    return left;
+	return left;
 }
 
 
 ////////////////////////////////////////////////////////////
-template <typename T>
-inline bool operator ==(const Vector2<T>& left, const Vector2<T>& right)
+template <typename T, typename U>
+constexpr bool operator==(const Vector2<T>& left, const Vector2<U>& right)
 {
-    return (left.x == right.x) && (left.y == right.y);
+	return (left.x == static_cast<T>(right.x)) && (left.y == static_cast<T>(right.y));
 }
 
 
 ////////////////////////////////////////////////////////////
-template <typename T>
-inline bool operator !=(const Vector2<T>& left, const Vector2<T>& right)
+template <typename T, typename U>
+constexpr bool operator!=(const Vector2<T>& left, const Vector2<U>& right)
 {
-    return (left.x != right.x) || (left.y != right.y);
+	return (left.x != static_cast<T>(right.x)) || (left.y != static_cast<T>(right.y));
 }
+
+} // namespace sf

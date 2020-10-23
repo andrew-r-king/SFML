@@ -47,6 +47,8 @@ project(SFML)
 # include the configuration file
 include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/Config.cmake)
 
+set(CMAKE_CXX_STANDARD 17)
+
 # we use the paths from the cmake GNUInstallDirs module as defaults
 # you can override these if you like
 # https://cmake.org/cmake/help/v3.0/module/GNUInstallDirs.html
