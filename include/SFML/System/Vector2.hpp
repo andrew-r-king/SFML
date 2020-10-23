@@ -53,7 +53,7 @@ public:
     /// \param Y Y coordinate
     ///
     ////////////////////////////////////////////////////////////
-    constexpr Vector2(const T inX, const T inY);
+    constexpr Vector2(const T X, const T Y);
 
     ////////////////////////////////////////////////////////////
     /// \brief Construct the vector from another type of vector
@@ -67,7 +67,7 @@ public:
     ///
     ////////////////////////////////////////////////////////////
     template <typename U>
-	constexpr Vector2(const Vector2<U>& inVector);
+	constexpr Vector2(const Vector2<U>& vector);
 
     ////////////////////////////////////////////////////////////
     // Member data
@@ -251,7 +251,6 @@ constexpr bool operator!=(const Vector2<T>& left, const Vector2<U>& right);
 using Vector2i = Vector2<int>;
 using Vector2f = Vector2<float>;
 using Vector2u = Vector2<unsigned int>;
-using Vec2s = Vector2<short>;
 
 } // namespace sf
 
@@ -271,7 +270,7 @@ using Vec2s = Vector2<short>;
 /// a velocity, etc.
 ///
 /// The template parameter T is the type of the coordinates. It
-/// can be any type that supports typename operations (+, -, /, *)
+/// can be any type that supports arithmetic operations (+, -, /, *)
 /// and comparisons (==, !=), for example int or float.
 ///
 /// You generally don't have to care about the templated form (sf::Vector2<T>),

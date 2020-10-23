@@ -24,17 +24,14 @@
 
 
 #include <SFML/System/Vector2.hpp>
-#include <SFML/Config.hpp>
-
-#include <type_traits>
 
 namespace sf
 {
 ////////////////////////////////////////////////////////////
 template <typename T>
-constexpr Vector2<T>::Vector2(const T inX, const T inY) :
-	x(inX),
-	y(inY)
+constexpr Vector2<T>::Vector2(const T X, const T Y) :
+	x(X),
+	y(Y)
 {
 }
 
@@ -42,9 +39,9 @@ constexpr Vector2<T>::Vector2(const T inX, const T inY) :
 ////////////////////////////////////////////////////////////
 template <typename T>
 template <typename U>
-constexpr Vector2<T>::Vector2(const Vector2<U>& inVector) :
-	x(static_cast<T>(inVector.x)),
-	y(static_cast<T>(inVector.y))
+constexpr Vector2<T>::Vector2(const Vector2<U>& vector) :
+	x(static_cast<T>(vector.x)),
+	y(static_cast<T>(vector.y))
 {
 }
 

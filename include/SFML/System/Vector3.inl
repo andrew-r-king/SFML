@@ -22,147 +22,139 @@
 //
 ////////////////////////////////////////////////////////////
 
+#include <SFML/System/Vector3.hpp>
 
+namespace sf
+{
 ////////////////////////////////////////////////////////////
 template <typename T>
-inline Vector3<T>::Vector3() :
-x(0),
-y(0),
-z(0)
+constexpr Vector3<T>::Vector3(const T inX, const T inY, const T inZ) :
+	x(inX),
+	y(inY),
+	z(inZ)
 {
-
-}
-
-
-////////////////////////////////////////////////////////////
-template <typename T>
-inline Vector3<T>::Vector3(T X, T Y, T Z) :
-x(X),
-y(Y),
-z(Z)
-{
-
 }
 
 
 ////////////////////////////////////////////////////////////
 template <typename T>
 template <typename U>
-inline Vector3<T>::Vector3(const Vector3<U>& vector) :
-x(static_cast<T>(vector.x)),
-y(static_cast<T>(vector.y)),
-z(static_cast<T>(vector.z))
+constexpr Vector3<T>::Vector3(const Vector3<U>& inVector) :
+	x(static_cast<T>(inVector.x)),
+	y(static_cast<T>(inVector.y)),
+	z(static_cast<T>(inVector.z))
 {
 }
 
 
 ////////////////////////////////////////////////////////////
 template <typename T>
-inline Vector3<T> operator -(const Vector3<T>& left)
+constexpr Vector3<T> operator -(const Vector3<T>& right)
 {
-    return Vector3<T>(-left.x, -left.y, -left.z);
+	return Vector3<T>(-static_cast<T>(right.x), -static_cast<T>(right.y), -static_cast<T>(right.z));
 }
 
 
 ////////////////////////////////////////////////////////////
-template <typename T>
-inline Vector3<T>& operator +=(Vector3<T>& left, const Vector3<T>& right)
+template <typename T, typename U>
+constexpr Vector3<T>& operator+=(Vector3<T>& left, const Vector3<U>& right)
 {
-    left.x += right.x;
-    left.y += right.y;
-    left.z += right.z;
+	left.x += static_cast<T>(right.x);
+	left.y += static_cast<T>(right.y);
+	left.z += static_cast<T>(right.z);
 
-    return left;
+	return left;
 }
 
 
 ////////////////////////////////////////////////////////////
-template <typename T>
-inline Vector3<T>& operator -=(Vector3<T>& left, const Vector3<T>& right)
+template <typename T, typename U>
+constexpr Vector3<T>& operator-=(Vector3<T>& left, const Vector3<U>& right)
 {
-    left.x -= right.x;
-    left.y -= right.y;
-    left.z -= right.z;
+	left.x -= static_cast<T>(right.x);
+	left.y -= static_cast<T>(right.y);
+	left.z -= static_cast<T>(right.z);
 
-    return left;
+	return left;
 }
 
 
 ////////////////////////////////////////////////////////////
-template <typename T>
-inline Vector3<T> operator +(const Vector3<T>& left, const Vector3<T>& right)
+template <typename T, typename U>
+constexpr Vector3<T> operator+(const Vector3<T>& left, const Vector3<U>& right)
 {
-    return Vector3<T>(left.x + right.x, left.y + right.y, left.z + right.z);
+	return Vector3<T>(left.x + static_cast<T>(right.x), left.y + static_cast<T>(right.y), left.z + static_cast<T>(right.z));
 }
 
 
 ////////////////////////////////////////////////////////////
-template <typename T>
-inline Vector3<T> operator -(const Vector3<T>& left, const Vector3<T>& right)
+template <typename T, typename U>
+constexpr Vector3<T> operator-(const Vector3<T>& left, const Vector3<U>& right)
 {
-    return Vector3<T>(left.x - right.x, left.y - right.y, left.z - right.z);
+	return Vector3<T>(left.x - static_cast<T>(right.x), left.y - static_cast<T>(right.y), left.z - static_cast<T>(right.z));
 }
 
 
 ////////////////////////////////////////////////////////////
-template <typename T>
-inline Vector3<T> operator *(const Vector3<T>& left, T right)
+template <typename T, typename U>
+constexpr Vector3<T> operator*(const Vector3<T>& left, U right)
 {
-    return Vector3<T>(left.x * right, left.y * right, left.z * right);
+	return Vector3<T>(left.x * static_cast<T>(right), left.y * static_cast<T>(right), left.z * static_cast<T>(right));
 }
 
 
 ////////////////////////////////////////////////////////////
-template <typename T>
-inline Vector3<T> operator *(T left, const Vector3<T>& right)
+template <typename T, typename U>
+constexpr Vector3<T> operator*(U left, const Vector3<T>& right)
 {
-    return Vector3<T>(right.x * left, right.y * left, right.z * left);
+	return Vector3<T>(right.x * static_cast<T>(left), right.y * static_cast<T>(left), right.z * static_cast<T>(left));
 }
 
 
 ////////////////////////////////////////////////////////////
-template <typename T>
-inline Vector3<T>& operator *=(Vector3<T>& left, T right)
+template <typename T, typename U>
+constexpr Vector3<T>& operator*=(Vector3<T>& left, U right)
 {
-    left.x *= right;
-    left.y *= right;
-    left.z *= right;
+	left.x *= static_cast<T>(right);
+	left.y *= static_cast<T>(right);
+	left.z *= static_cast<T>(right);
 
-    return left;
+	return left;
 }
 
 
 ////////////////////////////////////////////////////////////
-template <typename T>
-inline Vector3<T> operator /(const Vector3<T>& left, T right)
+template <typename T, typename U>
+constexpr Vector3<T> operator/(const Vector3<T>& left, U right)
 {
-    return Vector3<T>(left.x / right, left.y / right, left.z / right);
+	return Vector3<T>(left.x / static_cast<T>(right), left.y / static_cast<T>(right), left.z / static_cast<T>(right));
 }
 
 
 ////////////////////////////////////////////////////////////
-template <typename T>
-inline Vector3<T>& operator /=(Vector3<T>& left, T right)
+template <typename T, typename U>
+constexpr Vector3<T>& operator/=(Vector3<T>& left, U right)
 {
-    left.x /= right;
-    left.y /= right;
-    left.z /= right;
+	left.x /= static_cast<T>(right);
+	left.y /= static_cast<T>(right);
+	left.z /= static_cast<T>(right);
 
-    return left;
+	return left;
 }
 
 
 ////////////////////////////////////////////////////////////
-template <typename T>
-inline bool operator ==(const Vector3<T>& left, const Vector3<T>& right)
+template <typename T, typename U>
+constexpr bool operator==(const Vector3<T>& left, const Vector3<U>& right)
 {
-    return (left.x == right.x) && (left.y == right.y) && (left.z == right.z);
+	return (left.x == static_cast<T>(right.x)) && (left.y == static_cast<T>(right.y)) && (left.z == static_cast<T>(right.z));
 }
 
 
 ////////////////////////////////////////////////////////////
-template <typename T>
-inline bool operator !=(const Vector3<T>& left, const Vector3<T>& right)
+template <typename T, typename U>
+constexpr bool operator!=(const Vector3<T>& left, const Vector3<U>& right)
 {
-    return (left.x != right.x) || (left.y != right.y) || (left.z != right.z);
+	return (left.x != static_cast<T>(right.x)) || (left.y != static_cast<T>(right.y)) || (left.z != static_cast<T>(right.z));
+}
 }
