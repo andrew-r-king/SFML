@@ -25,6 +25,7 @@
 #ifndef SFML_CONFIG_HPP
 #define SFML_CONFIG_HPP
 
+#include <cstdint>
 
 ////////////////////////////////////////////////////////////
 // Define the SFML version
@@ -210,25 +211,20 @@ namespace sf
     // we can use them without doing any kind of check
 
     // 8 bits integer types
-    typedef signed   char Int8;
-    typedef unsigned char Uint8;
+    using Int8 = std::int8_t;
+    using Uint8 = std::uint8_t;
 
     // 16 bits integer types
-    typedef signed   short Int16;
-    typedef unsigned short Uint16;
+    using Int16 = std::int16_t;
+    using Uint16 = std::uint16_t;
 
     // 32 bits integer types
-    typedef signed   int Int32;
-    typedef unsigned int Uint32;
+    using Int32 = std::int32_t;
+    using Uint32 = std::uint32_t;
 
     // 64 bits integer types
-    #if defined(_MSC_VER)
-        typedef signed   __int64 Int64;
-        typedef unsigned __int64 Uint64;
-    #else
-        typedef signed   long long Int64;
-        typedef unsigned long long Uint64;
-    #endif
+    using Int64 = std::int64_t;
+    using Uint64 = std::uint64_t;
 
 } // namespace sf
 
