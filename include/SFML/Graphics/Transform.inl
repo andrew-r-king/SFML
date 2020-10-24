@@ -61,14 +61,14 @@ constexpr Transform::Transform(const float a00, const float a01, const float a02
 
 
 ////////////////////////////////////////////////////////////
-constexpr const Transform::Matrix4x4& Transform::getMatrix() const
+constexpr const Transform::Matrix4x4& Transform::getMatrix() const noexcept
 {
     return m_matrix;
 }
 
 
 ////////////////////////////////////////////////////////////
-constexpr Transform Transform::getInverse() const
+constexpr Transform Transform::getInverse() const noexcept
 {
     // Compute the determinant
     const float det = m_matrix[0] * (m_matrix[15] * m_matrix[5] - m_matrix[7] * m_matrix[13]) -
@@ -97,7 +97,7 @@ constexpr Transform Transform::getInverse() const
 
 
 ////////////////////////////////////////////////////////////
-constexpr Vector2f Transform::transformPoint(const float x, const float y) const
+constexpr Vector2f Transform::transformPoint(const float x, const float y) const noexcept
 {
     return Vector2f(m_matrix[0] * x + m_matrix[4] * y + m_matrix[12],
                     m_matrix[1] * x + m_matrix[5] * y + m_matrix[13]);
@@ -105,14 +105,14 @@ constexpr Vector2f Transform::transformPoint(const float x, const float y) const
 
 
 ////////////////////////////////////////////////////////////
-constexpr Vector2f Transform::transformPoint(const Vector2f& point) const
+constexpr Vector2f Transform::transformPoint(const Vector2f& point) const noexcept
 {
     return transformPoint(point.x, point.y);
 }
 
 
 ////////////////////////////////////////////////////////////
-constexpr FloatRect Transform::transformRect(const FloatRect& rectangle) const
+constexpr FloatRect Transform::transformRect(const FloatRect& rectangle) const noexcept
 {
     // Transform the 4 corners of the rectangle
     const std::array<Vector2f, 4> points = {
@@ -146,7 +146,7 @@ constexpr FloatRect Transform::transformRect(const FloatRect& rectangle) const
 
 
 ////////////////////////////////////////////////////////////
-constexpr Transform& Transform::combine(const Transform& transform)
+constexpr Transform& Transform::combine(const Transform& transform) noexcept
 {
     const auto& a = m_matrix;
     const auto& b = transform.m_matrix;
@@ -166,7 +166,7 @@ constexpr Transform& Transform::combine(const Transform& transform)
 
 
 ////////////////////////////////////////////////////////////
-constexpr Transform& Transform::translate(const float x, const float y)
+constexpr Transform& Transform::translate(const float x, const float y) noexcept
 {
     Transform translation(1, 0, x,
                           0, 1, y,
@@ -177,7 +177,7 @@ constexpr Transform& Transform::translate(const float x, const float y)
 
 
 ////////////////////////////////////////////////////////////
-constexpr Transform& Transform::translate(const Vector2f& offset)
+constexpr Transform& Transform::translate(const Vector2f& offset) noexcept
 {
     return translate(offset.x, offset.y);
 }
@@ -221,7 +221,7 @@ constexpr Transform& Transform::rotate(const float angle, const Vector2f& center
 
 
 ////////////////////////////////////////////////////////////
-constexpr Transform& Transform::scale(const float scaleX, const float scaleY)
+constexpr Transform& Transform::scale(const float scaleX, const float scaleY) noexcept
 {
     Transform scaling(scaleX, 0,      0,
                       0,      scaleY, 0,
@@ -232,7 +232,7 @@ constexpr Transform& Transform::scale(const float scaleX, const float scaleY)
 
 
 ////////////////////////////////////////////////////////////
-constexpr Transform& Transform::scale(const float scaleX, const float scaleY, const float centerX, const float centerY)
+constexpr Transform& Transform::scale(const float scaleX, const float scaleY, const float centerX, const float centerY) noexcept
 {
     Transform scaling(scaleX, 0,      centerX * (1 - scaleX),
                       0,      scaleY, centerY * (1 - scaleY),
@@ -243,42 +243,42 @@ constexpr Transform& Transform::scale(const float scaleX, const float scaleY, co
 
 
 ////////////////////////////////////////////////////////////
-constexpr Transform& Transform::scale(const Vector2f& factors)
+constexpr Transform& Transform::scale(const Vector2f& factors) noexcept
 {
     return scale(factors.x, factors.y);
 }
 
 
 ////////////////////////////////////////////////////////////
-constexpr Transform& Transform::scale(const Vector2f& factors, const Vector2f& center)
+constexpr Transform& Transform::scale(const Vector2f& factors, const Vector2f& center) noexcept
 {
     return scale(factors.x, factors.y, center.x, center.y);
 }
 
 
 ////////////////////////////////////////////////////////////
-constexpr Transform operator *(const Transform& left, const Transform& right)
+constexpr Transform operator *(const Transform& left, const Transform& right) noexcept
 {
     return Transform(left).combine(right);
 }
 
 
 ////////////////////////////////////////////////////////////
-constexpr Transform& operator *=(Transform& left, const Transform& right)
+constexpr Transform& operator *=(Transform& left, const Transform& right) noexcept
 {
     return left.combine(right);
 }
 
 
 ////////////////////////////////////////////////////////////
-constexpr Vector2f operator *(const Transform& left, const Vector2f& right)
+constexpr Vector2f operator *(const Transform& left, const Vector2f& right) noexcept
 {
     return left.transformPoint(right);
 }
 
 
 ////////////////////////////////////////////////////////////
-constexpr bool operator ==(const Transform& left, const Transform& right)
+constexpr bool operator ==(const Transform& left, const Transform& right) noexcept
 {
     const auto& a = left.getMatrix();
     const auto& b = right.getMatrix();
@@ -290,7 +290,7 @@ constexpr bool operator ==(const Transform& left, const Transform& right)
 
 
 ////////////////////////////////////////////////////////////
-constexpr bool operator !=(const Transform& left, const Transform& right)
+constexpr bool operator !=(const Transform& left, const Transform& right) noexcept
 {
     return !(left == right);
 }

@@ -86,7 +86,7 @@ public:
 ///
 ////////////////////////////////////////////////////////////
 template <typename T>
-constexpr Vector2<T> operator-(const Vector2<T>& right);
+constexpr Vector2<T> operator-(const Vector2<T>& right) noexcept;
 
 ////////////////////////////////////////////////////////////
 /// \relates Vector2
@@ -102,7 +102,7 @@ constexpr Vector2<T> operator-(const Vector2<T>& right);
 ///
 ////////////////////////////////////////////////////////////
 template <typename T, typename U>
-constexpr Vector2<T>& operator+=(Vector2<T>& left, const Vector2<U>& right);
+constexpr Vector2<T>& operator+=(Vector2<T>& left, const Vector2<U>& right) noexcept;
 
 ////////////////////////////////////////////////////////////
 /// \relates Vector2
@@ -118,7 +118,7 @@ constexpr Vector2<T>& operator+=(Vector2<T>& left, const Vector2<U>& right);
 ///
 ////////////////////////////////////////////////////////////
 template <typename T, typename U>
-constexpr Vector2<T>& operator-=(Vector2<T>& left, const Vector2<U>& right);
+constexpr Vector2<T>& operator-=(Vector2<T>& left, const Vector2<U>& right) noexcept;
 
 ////////////////////////////////////////////////////////////
 /// \relates Vector2
@@ -131,7 +131,7 @@ constexpr Vector2<T>& operator-=(Vector2<T>& left, const Vector2<U>& right);
 ///
 ////////////////////////////////////////////////////////////
 template <typename T, typename U>
-constexpr Vector2<T> operator+(const Vector2<T>& left, const Vector2<U>& right);
+constexpr Vector2<T> operator+(const Vector2<T>& left, const Vector2<U>& right) noexcept;
 
 ////////////////////////////////////////////////////////////
 /// \relates Vector2
@@ -144,7 +144,7 @@ constexpr Vector2<T> operator+(const Vector2<T>& left, const Vector2<U>& right);
 ///
 ////////////////////////////////////////////////////////////
 template <typename T, typename U>
-constexpr Vector2<T> operator-(const Vector2<T>& left, const Vector2<U>& right);
+constexpr Vector2<T> operator-(const Vector2<T>& left, const Vector2<U>& right) noexcept;
 
 ////////////////////////////////////////////////////////////
 /// \relates Vector2
@@ -157,7 +157,7 @@ constexpr Vector2<T> operator-(const Vector2<T>& left, const Vector2<U>& right);
 ///
 ////////////////////////////////////////////////////////////
 template <typename T, typename U>
-constexpr Vector2<T> operator*(const Vector2<T>& left, U right);
+constexpr Vector2<T> operator*(const Vector2<T>& left, U right) noexcept;
 
 ////////////////////////////////////////////////////////////
 /// \relates Vector2
@@ -170,7 +170,7 @@ constexpr Vector2<T> operator*(const Vector2<T>& left, U right);
 ///
 ////////////////////////////////////////////////////////////
 template <typename T, typename U>
-constexpr Vector2<T> operator*(U left, const Vector2<T>& right); // TODO: eval further
+constexpr Vector2<T> operator*(U left, const Vector2<T>& right) noexcept; // TODO: eval further
 
 ////////////////////////////////////////////////////////////
 /// \relates Vector2
@@ -186,7 +186,7 @@ constexpr Vector2<T> operator*(U left, const Vector2<T>& right); // TODO: eval f
 ///
 ////////////////////////////////////////////////////////////
 template <typename T, typename U>
-constexpr Vector2<T>& operator*=(Vector2<T>& left, U right);
+constexpr Vector2<T>& operator*=(Vector2<T>& left, U right) noexcept;
 
 ////////////////////////////////////////////////////////////
 /// \relates Vector2
@@ -199,7 +199,7 @@ constexpr Vector2<T>& operator*=(Vector2<T>& left, U right);
 ///
 ////////////////////////////////////////////////////////////
 template <typename T, typename U>
-constexpr Vector2<T> operator/(const Vector2<T>& left, U right);
+constexpr Vector2<T> operator/(const Vector2<T>& left, U right) noexcept;
 
 ////////////////////////////////////////////////////////////
 /// \relates Vector2
@@ -215,7 +215,7 @@ constexpr Vector2<T> operator/(const Vector2<T>& left, U right);
 ///
 ////////////////////////////////////////////////////////////
 template <typename T, typename U>
-constexpr Vector2<T>& operator/=(Vector2<T>& left, U right);
+constexpr Vector2<T>& operator/=(Vector2<T>& left, U right) noexcept;
 
 ////////////////////////////////////////////////////////////
 /// \relates Vector2
@@ -230,7 +230,7 @@ constexpr Vector2<T>& operator/=(Vector2<T>& left, U right);
 ///
 ////////////////////////////////////////////////////////////
 template <typename T, typename U>
-constexpr bool operator==(const Vector2<T>& left, const Vector2<U>& right);
+constexpr bool operator==(const Vector2<T>& left, const Vector2<U>& right) noexcept;
 
 ////////////////////////////////////////////////////////////
 /// \relates Vector2
@@ -245,7 +245,7 @@ constexpr bool operator==(const Vector2<T>& left, const Vector2<U>& right);
 ///
 ////////////////////////////////////////////////////////////
 template <typename T, typename U>
-constexpr bool operator!=(const Vector2<T>& left, const Vector2<U>& right);
+constexpr bool operator!=(const Vector2<T>& left, const Vector2<U>& right) noexcept;
 
 // Define the most common types
 using Vector2i = Vector2<int>;

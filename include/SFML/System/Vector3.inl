@@ -49,7 +49,7 @@ constexpr Vector3<T>::Vector3(const Vector3<U>& inVector) :
 
 ////////////////////////////////////////////////////////////
 template <typename T>
-constexpr Vector3<T> operator -(const Vector3<T>& right)
+constexpr Vector3<T> operator -(const Vector3<T>& right) noexcept
 {
 	return Vector3<T>(-static_cast<T>(right.x), -static_cast<T>(right.y), -static_cast<T>(right.z));
 }
@@ -57,7 +57,7 @@ constexpr Vector3<T> operator -(const Vector3<T>& right)
 
 ////////////////////////////////////////////////////////////
 template <typename T, typename U>
-constexpr Vector3<T>& operator+=(Vector3<T>& left, const Vector3<U>& right)
+constexpr Vector3<T>& operator+=(Vector3<T>& left, const Vector3<U>& right) noexcept
 {
 	left.x += static_cast<T>(right.x);
 	left.y += static_cast<T>(right.y);
@@ -69,7 +69,7 @@ constexpr Vector3<T>& operator+=(Vector3<T>& left, const Vector3<U>& right)
 
 ////////////////////////////////////////////////////////////
 template <typename T, typename U>
-constexpr Vector3<T>& operator-=(Vector3<T>& left, const Vector3<U>& right)
+constexpr Vector3<T>& operator-=(Vector3<T>& left, const Vector3<U>& right) noexcept
 {
 	left.x -= static_cast<T>(right.x);
 	left.y -= static_cast<T>(right.y);
@@ -81,7 +81,7 @@ constexpr Vector3<T>& operator-=(Vector3<T>& left, const Vector3<U>& right)
 
 ////////////////////////////////////////////////////////////
 template <typename T, typename U>
-constexpr Vector3<T> operator+(const Vector3<T>& left, const Vector3<U>& right)
+constexpr Vector3<T> operator+(const Vector3<T>& left, const Vector3<U>& right) noexcept
 {
 	return Vector3<T>(left.x + static_cast<T>(right.x), left.y + static_cast<T>(right.y), left.z + static_cast<T>(right.z));
 }
@@ -89,7 +89,7 @@ constexpr Vector3<T> operator+(const Vector3<T>& left, const Vector3<U>& right)
 
 ////////////////////////////////////////////////////////////
 template <typename T, typename U>
-constexpr Vector3<T> operator-(const Vector3<T>& left, const Vector3<U>& right)
+constexpr Vector3<T> operator-(const Vector3<T>& left, const Vector3<U>& right) noexcept
 {
 	return Vector3<T>(left.x - static_cast<T>(right.x), left.y - static_cast<T>(right.y), left.z - static_cast<T>(right.z));
 }
@@ -97,7 +97,7 @@ constexpr Vector3<T> operator-(const Vector3<T>& left, const Vector3<U>& right)
 
 ////////////////////////////////////////////////////////////
 template <typename T, typename U>
-constexpr Vector3<T> operator*(const Vector3<T>& left, U right)
+constexpr Vector3<T> operator*(const Vector3<T>& left, U right) noexcept
 {
 	return Vector3<T>(left.x * static_cast<T>(right), left.y * static_cast<T>(right), left.z * static_cast<T>(right));
 }
@@ -105,7 +105,7 @@ constexpr Vector3<T> operator*(const Vector3<T>& left, U right)
 
 ////////////////////////////////////////////////////////////
 template <typename T, typename U>
-constexpr Vector3<T> operator*(U left, const Vector3<T>& right)
+constexpr Vector3<T> operator*(U left, const Vector3<T>& right) noexcept
 {
 	return Vector3<T>(right.x * static_cast<T>(left), right.y * static_cast<T>(left), right.z * static_cast<T>(left));
 }
@@ -113,7 +113,7 @@ constexpr Vector3<T> operator*(U left, const Vector3<T>& right)
 
 ////////////////////////////////////////////////////////////
 template <typename T, typename U>
-constexpr Vector3<T>& operator*=(Vector3<T>& left, U right)
+constexpr Vector3<T>& operator*=(Vector3<T>& left, U right) noexcept
 {
 	left.x *= static_cast<T>(right);
 	left.y *= static_cast<T>(right);
@@ -125,7 +125,7 @@ constexpr Vector3<T>& operator*=(Vector3<T>& left, U right)
 
 ////////////////////////////////////////////////////////////
 template <typename T, typename U>
-constexpr Vector3<T> operator/(const Vector3<T>& left, U right)
+constexpr Vector3<T> operator/(const Vector3<T>& left, U right) noexcept
 {
 	return Vector3<T>(left.x / static_cast<T>(right), left.y / static_cast<T>(right), left.z / static_cast<T>(right));
 }
@@ -133,7 +133,7 @@ constexpr Vector3<T> operator/(const Vector3<T>& left, U right)
 
 ////////////////////////////////////////////////////////////
 template <typename T, typename U>
-constexpr Vector3<T>& operator/=(Vector3<T>& left, U right)
+constexpr Vector3<T>& operator/=(Vector3<T>& left, U right) noexcept
 {
 	left.x /= static_cast<T>(right);
 	left.y /= static_cast<T>(right);
@@ -145,7 +145,7 @@ constexpr Vector3<T>& operator/=(Vector3<T>& left, U right)
 
 ////////////////////////////////////////////////////////////
 template <typename T, typename U>
-constexpr bool operator==(const Vector3<T>& left, const Vector3<U>& right)
+constexpr bool operator==(const Vector3<T>& left, const Vector3<U>& right) noexcept
 {
 	return (left.x == static_cast<T>(right.x)) && (left.y == static_cast<T>(right.y)) && (left.z == static_cast<T>(right.z));
 }
@@ -153,7 +153,7 @@ constexpr bool operator==(const Vector3<T>& left, const Vector3<U>& right)
 
 ////////////////////////////////////////////////////////////
 template <typename T, typename U>
-constexpr bool operator!=(const Vector3<T>& left, const Vector3<U>& right)
+constexpr bool operator!=(const Vector3<T>& left, const Vector3<U>& right) noexcept
 {
 	return (left.x != static_cast<T>(right.x)) || (left.y != static_cast<T>(right.y)) || (left.z != static_cast<T>(right.z));
 }

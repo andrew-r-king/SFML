@@ -86,7 +86,7 @@ public:
     /// \return Pointer to a 4x4 matrix
     ///
     ////////////////////////////////////////////////////////////
-    constexpr const Matrix4x4& getMatrix() const;
+    constexpr const Matrix4x4& getMatrix() const noexcept;
 
     ////////////////////////////////////////////////////////////
     /// \brief Return the inverse of the transform
@@ -97,7 +97,7 @@ public:
     /// \return A new transform which is the inverse of self
     ///
     ////////////////////////////////////////////////////////////
-    constexpr Transform getInverse() const;
+    constexpr Transform getInverse() const noexcept;
 
     ////////////////////////////////////////////////////////////
     /// \brief Transform a 2D point
@@ -114,7 +114,7 @@ public:
     /// \return Transformed point
     ///
     ////////////////////////////////////////////////////////////
-    constexpr Vector2f transformPoint(const float x, const float y) const;
+    constexpr Vector2f transformPoint(const float x, const float y) const noexcept;
 
     ////////////////////////////////////////////////////////////
     /// \brief Transform a 2D point
@@ -130,7 +130,7 @@ public:
     /// \return Transformed point
     ///
     ////////////////////////////////////////////////////////////
-    constexpr Vector2f transformPoint(const Vector2f& point) const;
+    constexpr Vector2f transformPoint(const Vector2f& point) const noexcept;
 
     ////////////////////////////////////////////////////////////
     /// \brief Transform a rectangle
@@ -146,7 +146,7 @@ public:
     /// \return Transformed rectangle
     ///
     ////////////////////////////////////////////////////////////
-    constexpr FloatRect transformRect(const FloatRect& rectangle) const;
+    constexpr FloatRect transformRect(const FloatRect& rectangle) const noexcept;
 
     ////////////////////////////////////////////////////////////
     /// \brief Combine the current transform with another one
@@ -166,7 +166,7 @@ public:
     /// \return Reference to *this
     ///
     ////////////////////////////////////////////////////////////
-    constexpr Transform& combine(const Transform& transform);
+    constexpr Transform& combine(const Transform& transform) noexcept;
 
     ////////////////////////////////////////////////////////////
     /// \brief Combine the current transform with a translation
@@ -186,7 +186,7 @@ public:
     /// \see rotate, scale
     ///
     ////////////////////////////////////////////////////////////
-    constexpr Transform& translate(const float x, const float y);
+    constexpr Transform& translate(const float x, const float y) noexcept;
 
     ////////////////////////////////////////////////////////////
     /// \brief Combine the current transform with a translation
@@ -205,7 +205,7 @@ public:
     /// \see rotate, scale
     ///
     ////////////////////////////////////////////////////////////
-    constexpr Transform& translate(const Vector2f& offset);
+    constexpr Transform& translate(const Vector2f& offset) noexcept;
 
     ////////////////////////////////////////////////////////////
     /// \brief Combine the current transform with a rotation
@@ -295,7 +295,7 @@ public:
     /// \see translate, rotate
     ///
     ////////////////////////////////////////////////////////////
-    constexpr Transform& scale(const float scaleX, const float scaleY);
+    constexpr Transform& scale(const float scaleX, const float scaleY) noexcept;
 
     ////////////////////////////////////////////////////////////
     /// \brief Combine the current transform with a scaling
@@ -322,7 +322,7 @@ public:
     /// \see translate, rotate
     ///
     ////////////////////////////////////////////////////////////
-    constexpr Transform& scale(const float scaleX, const float scaleY, const float centerX, const float centerY);
+    constexpr Transform& scale(const float scaleX, const float scaleY, const float centerX, const float centerY) noexcept;
 
     ////////////////////////////////////////////////////////////
     /// \brief Combine the current transform with a scaling
@@ -341,7 +341,7 @@ public:
     /// \see translate, rotate
     ///
     ////////////////////////////////////////////////////////////
-    constexpr Transform& scale(const Vector2f& factors);
+    constexpr Transform& scale(const Vector2f& factors) noexcept;
 
     ////////////////////////////////////////////////////////////
     /// \brief Combine the current transform with a scaling
@@ -366,7 +366,7 @@ public:
     /// \see translate, rotate
     ///
     ////////////////////////////////////////////////////////////
-    constexpr Transform& scale(const Vector2f& factors, const Vector2f& center);
+    constexpr Transform& scale(const Vector2f& factors, const Vector2f& center) noexcept;
 
     ////////////////////////////////////////////////////////////
     // Static member data
@@ -393,7 +393,7 @@ private:
 /// \return New combined transform
 ///
 ////////////////////////////////////////////////////////////
-constexpr Transform operator *(const Transform& left, const Transform& right);
+constexpr Transform operator *(const Transform& left, const Transform& right) noexcept;
 
 ////////////////////////////////////////////////////////////
 /// \relates sf::Transform
@@ -407,7 +407,7 @@ constexpr Transform operator *(const Transform& left, const Transform& right);
 /// \return The combined transform
 ///
 ////////////////////////////////////////////////////////////
-constexpr Transform& operator *=(Transform& left, const Transform& right);
+constexpr Transform& operator *=(Transform& left, const Transform& right) noexcept;
 
 ////////////////////////////////////////////////////////////
 /// \relates sf::Transform
@@ -421,7 +421,7 @@ constexpr Transform& operator *=(Transform& left, const Transform& right);
 /// \return New transformed point
 ///
 ////////////////////////////////////////////////////////////
-constexpr Vector2f operator *(const Transform& left, const Vector2f& right);
+constexpr Vector2f operator *(const Transform& left, const Vector2f& right) noexcept;
 
 ////////////////////////////////////////////////////////////
 /// \relates sf::Transform
@@ -436,7 +436,7 @@ constexpr Vector2f operator *(const Transform& left, const Vector2f& right);
 /// \return true if the transforms are equal, false otherwise
 ///
 ////////////////////////////////////////////////////////////
-constexpr bool operator ==(const Transform& left, const Transform& right);
+constexpr bool operator ==(const Transform& left, const Transform& right) noexcept;
 
 ////////////////////////////////////////////////////////////
 /// \relates sf::Transform
@@ -450,7 +450,7 @@ constexpr bool operator ==(const Transform& left, const Transform& right);
 /// \return true if the transforms are not equal, false otherwise
 ///
 ////////////////////////////////////////////////////////////
-constexpr bool operator !=(const Transform& left, const Transform& right);
+constexpr bool operator !=(const Transform& left, const Transform& right) noexcept;
 
 } // namespace sf
 

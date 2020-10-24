@@ -88,7 +88,7 @@ public:
 ///
 ////////////////////////////////////////////////////////////
 template <typename T>
-constexpr Vector3<T> operator -(const Vector3<T>& right);
+constexpr Vector3<T> operator -(const Vector3<T>& right) noexcept;
 
 ////////////////////////////////////////////////////////////
 /// \relates Vector3
@@ -104,7 +104,7 @@ constexpr Vector3<T> operator -(const Vector3<T>& right);
 ///
 ////////////////////////////////////////////////////////////
 template <typename T, typename U>
-constexpr Vector3<T>& operator+=(Vector3<T>& left, const Vector3<U>& right);
+constexpr Vector3<T>& operator+=(Vector3<T>& left, const Vector3<U>& right) noexcept;
 
 ////////////////////////////////////////////////////////////
 /// \relates Vector3
@@ -120,7 +120,7 @@ constexpr Vector3<T>& operator+=(Vector3<T>& left, const Vector3<U>& right);
 ///
 ////////////////////////////////////////////////////////////
 template <typename T, typename U>
-constexpr Vector3<T>& operator-=(Vector3<T>& left, const Vector3<U>& right);
+constexpr Vector3<T>& operator-=(Vector3<T>& left, const Vector3<U>& right) noexcept;
 
 ////////////////////////////////////////////////////////////
 /// \relates Vector3
@@ -133,7 +133,7 @@ constexpr Vector3<T>& operator-=(Vector3<T>& left, const Vector3<U>& right);
 ///
 ////////////////////////////////////////////////////////////
 template <typename T, typename U>
-constexpr Vector3<T> operator+(const Vector3<T>& left, const Vector3<U>& right);
+constexpr Vector3<T> operator+(const Vector3<T>& left, const Vector3<U>& right) noexcept;
 
 ////////////////////////////////////////////////////////////
 /// \relates Vector3
@@ -146,7 +146,7 @@ constexpr Vector3<T> operator+(const Vector3<T>& left, const Vector3<U>& right);
 ///
 ////////////////////////////////////////////////////////////
 template <typename T, typename U>
-constexpr Vector3<T> operator-(const Vector3<T>& left, const Vector3<U>& right);
+constexpr Vector3<T> operator-(const Vector3<T>& left, const Vector3<U>& right) noexcept;
 
 ////////////////////////////////////////////////////////////
 /// \relates Vector3
@@ -159,7 +159,7 @@ constexpr Vector3<T> operator-(const Vector3<T>& left, const Vector3<U>& right);
 ///
 ////////////////////////////////////////////////////////////
 template <typename T, typename U>
-constexpr Vector3<T> operator*(const Vector3<T>& left, U right);
+constexpr Vector3<T> operator*(const Vector3<T>& left, U right) noexcept;
 
 ////////////////////////////////////////////////////////////
 /// \relates Vector3
@@ -172,7 +172,7 @@ constexpr Vector3<T> operator*(const Vector3<T>& left, U right);
 ///
 ////////////////////////////////////////////////////////////
 template <typename T, typename U>
-constexpr Vector3<T> operator*(U left, const Vector3<T>& right);
+constexpr Vector3<T> operator*(U left, const Vector3<T>& right) noexcept;
 
 ////////////////////////////////////////////////////////////
 /// \relates Vector3
@@ -188,7 +188,7 @@ constexpr Vector3<T> operator*(U left, const Vector3<T>& right);
 ///
 ////////////////////////////////////////////////////////////
 template <typename T, typename U>
-constexpr Vector3<T>& operator*=(Vector3<T>& left, U right);
+constexpr Vector3<T>& operator*=(Vector3<T>& left, U right) noexcept;
 
 ////////////////////////////////////////////////////////////
 /// \relates Vector3
@@ -201,7 +201,7 @@ constexpr Vector3<T>& operator*=(Vector3<T>& left, U right);
 ///
 ////////////////////////////////////////////////////////////
 template <typename T, typename U>
-constexpr Vector3<T> operator/(const Vector3<T>& left, U right);
+constexpr Vector3<T> operator/(const Vector3<T>& left, U right) noexcept;
 
 ////////////////////////////////////////////////////////////
 /// \relates Vector3
@@ -217,7 +217,7 @@ constexpr Vector3<T> operator/(const Vector3<T>& left, U right);
 ///
 ////////////////////////////////////////////////////////////
 template <typename T, typename U>
-constexpr Vector3<T>& operator/=(Vector3<T>& left, U right);
+constexpr Vector3<T>& operator/=(Vector3<T>& left, U right) noexcept;
 
 ////////////////////////////////////////////////////////////
 /// \relates Vector3
@@ -232,7 +232,7 @@ constexpr Vector3<T>& operator/=(Vector3<T>& left, U right);
 ///
 ////////////////////////////////////////////////////////////
 template <typename T, typename U>
-constexpr bool operator==(const Vector3<T>& left, const Vector3<U>& right);
+constexpr bool operator==(const Vector3<T>& left, const Vector3<U>& right) noexcept;
 
 ////////////////////////////////////////////////////////////
 /// \relates Vector3
@@ -247,7 +247,7 @@ constexpr bool operator==(const Vector3<T>& left, const Vector3<U>& right);
 ///
 ////////////////////////////////////////////////////////////
 template <typename T, typename U>
-constexpr bool operator!=(const Vector3<T>& left, const Vector3<U>& right);
+constexpr bool operator!=(const Vector3<T>& left, const Vector3<U>& right) noexcept;
 
 // Define the most common types
 using Vector3i = Vector3<int>;

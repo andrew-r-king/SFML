@@ -159,7 +159,7 @@ public:
     /// \see getSize
     ///
     ////////////////////////////////////////////////////////////
-    constexpr sf::Vector2<T> getPosition() const;
+    constexpr sf::Vector2<T> getPosition() const noexcept;
 
     ////////////////////////////////////////////////////////////
     /// \brief Get the size of the rectangle
@@ -169,7 +169,7 @@ public:
     /// \see getPosition
     ///
     ////////////////////////////////////////////////////////////
-    constexpr sf::Vector2<T> getSize() const;
+    constexpr sf::Vector2<T> getSize() const noexcept;
 
     ////////////////////////////////////////////////////////////
     // Member data
@@ -193,7 +193,7 @@ public:
 ///
 ////////////////////////////////////////////////////////////
 template <typename T>
-constexpr bool operator ==(const Rect<T>& left, const Rect<T>& right);
+constexpr bool operator ==(const Rect<T>& left, const Rect<T>& right) noexcept;
 
 ////////////////////////////////////////////////////////////
 /// \relates Rect
@@ -208,7 +208,7 @@ constexpr bool operator ==(const Rect<T>& left, const Rect<T>& right);
 ///
 ////////////////////////////////////////////////////////////
 template <typename T>
-constexpr bool operator !=(const Rect<T>& left, const Rect<T>& right);
+constexpr bool operator !=(const Rect<T>& left, const Rect<T>& right) noexcept;
 
 // Create typedefs for the most common types
 using IntRect = Rect<int>;

@@ -132,13 +132,13 @@ constexpr bool Rect<T>::intersects(const Rect<T>& rectangle, Rect<T>& intersecti
 }
 
 template <typename T>
-constexpr Vector2<T> Rect<T>::getPosition() const
+constexpr Vector2<T> Rect<T>::getPosition() const noexcept
 {
     return Vector2<T>(left, top);
 }
 
 template <typename T>
-constexpr Vector2<T> Rect<T>::getSize() const
+constexpr Vector2<T> Rect<T>::getSize() const noexcept
 {
     return Vector2<T>(width, height);
 }
@@ -146,7 +146,7 @@ constexpr Vector2<T> Rect<T>::getSize() const
 
 ////////////////////////////////////////////////////////////
 template <typename T>
-constexpr bool operator ==(const Rect<T>& left, const Rect<T>& right)
+constexpr bool operator ==(const Rect<T>& left, const Rect<T>& right) noexcept
 {
     return (left.left == right.left) && (left.width == right.width) &&
            (left.top == right.top) && (left.height == right.height);
@@ -155,7 +155,7 @@ constexpr bool operator ==(const Rect<T>& left, const Rect<T>& right)
 
 ////////////////////////////////////////////////////////////
 template <typename T>
-constexpr bool operator !=(const Rect<T>& left, const Rect<T>& right)
+constexpr bool operator !=(const Rect<T>& left, const Rect<T>& right) noexcept
 {
     return !(left == right);
 }

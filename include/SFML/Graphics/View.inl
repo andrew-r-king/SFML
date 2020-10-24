@@ -33,7 +33,7 @@
 namespace sf
 {
 ////////////////////////////////////////////////////////////
-constexpr void View::setCenter(const float x, const float y)
+constexpr void View::setCenter(const float x, const float y) noexcept
 {
     m_center.x = x;
     m_center.y = y;
@@ -44,14 +44,14 @@ constexpr void View::setCenter(const float x, const float y)
 
 
 ////////////////////////////////////////////////////////////
-constexpr void View::setCenter(const Vector2f& center)
+constexpr void View::setCenter(const Vector2f& center) noexcept
 {
     setCenter(center.x, center.y);
 }
 
 
 ////////////////////////////////////////////////////////////
-constexpr void View::setSize(const float width, const float height)
+constexpr void View::setSize(const float width, const float height) noexcept
 {
     m_size.x = width;
     m_size.y = height;
@@ -62,7 +62,7 @@ constexpr void View::setSize(const float width, const float height)
 
 
 ////////////////////////////////////////////////////////////
-constexpr void View::setSize(const Vector2f& size)
+constexpr void View::setSize(const Vector2f& size) noexcept
 {
     setSize(size.x, size.y);
 }
@@ -76,7 +76,7 @@ constexpr void View::setViewport(const FloatRect& viewport)
 
 
 ////////////////////////////////////////////////////////////
-constexpr void View::reset(const FloatRect& rectangle)
+constexpr void View::reset(const FloatRect& rectangle) noexcept
 {
     m_center.x = rectangle.left + rectangle.width / 2.f;
     m_center.y = rectangle.top + rectangle.height / 2.f;
@@ -90,49 +90,49 @@ constexpr void View::reset(const FloatRect& rectangle)
 
 
 ////////////////////////////////////////////////////////////
-constexpr const Vector2f& View::getCenter() const
+constexpr const Vector2f& View::getCenter() const noexcept
 {
     return m_center;
 }
 
 
 ////////////////////////////////////////////////////////////
-constexpr const Vector2f& View::getSize() const
+constexpr const Vector2f& View::getSize() const noexcept
 {
     return m_size;
 }
 
 
 ////////////////////////////////////////////////////////////
-constexpr float View::getRotation() const
+constexpr float View::getRotation() const noexcept
 {
     return m_rotation;
 }
 
 
 ////////////////////////////////////////////////////////////
-constexpr const FloatRect& View::getViewport() const
+constexpr const FloatRect& View::getViewport() const noexcept
 {
     return m_viewport;
 }
 
 
 ////////////////////////////////////////////////////////////
-constexpr void View::move(const float offsetX, const float offsetY)
+constexpr void View::move(const float offsetX, const float offsetY) noexcept
 {
     setCenter(m_center.x + offsetX, m_center.y + offsetY);
 }
 
 
 ////////////////////////////////////////////////////////////
-constexpr void View::move(const Vector2f& offset)
+constexpr void View::move(const Vector2f& offset) noexcept
 {
     setCenter(m_center + offset);
 }
 
 
 ////////////////////////////////////////////////////////////
-constexpr void View::zoom(const float factor)
+constexpr void View::zoom(const float factor) noexcept
 {
     setSize(m_size.x * factor, m_size.y * factor);
 }

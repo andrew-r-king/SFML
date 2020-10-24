@@ -78,7 +78,7 @@ public:
     /// \see setSize, getCenter
     ///
     ////////////////////////////////////////////////////////////
-    constexpr void setCenter(const float x, const float y);
+    constexpr void setCenter(const float x, const float y) noexcept;
 
     ////////////////////////////////////////////////////////////
     /// \brief Set the center of the view
@@ -88,7 +88,7 @@ public:
     /// \see setSize, getCenter
     ///
     ////////////////////////////////////////////////////////////
-    constexpr void setCenter(const Vector2f& center);
+    constexpr void setCenter(const Vector2f& center) noexcept;
 
     ////////////////////////////////////////////////////////////
     /// \brief Set the size of the view
@@ -99,7 +99,7 @@ public:
     /// \see setCenter, getCenter
     ///
     ////////////////////////////////////////////////////////////
-    constexpr void setSize(const float width, const float height);
+    constexpr void setSize(const float width, const float height) noexcept;
 
     ////////////////////////////////////////////////////////////
     /// \brief Set the size of the view
@@ -109,7 +109,7 @@ public:
     /// \see setCenter, getCenter
     ///
     ////////////////////////////////////////////////////////////
-    constexpr void setSize(const Vector2f& size);
+    constexpr void setSize(const Vector2f& size) noexcept;
 
     ////////////////////////////////////////////////////////////
     /// \brief Set the orientation of the view
@@ -150,7 +150,7 @@ public:
     /// \see setCenter, setSize, setRotation
     ///
     ////////////////////////////////////////////////////////////
-    constexpr void reset(const FloatRect& rectangle);
+    constexpr void reset(const FloatRect& rectangle) noexcept;
 
     ////////////////////////////////////////////////////////////
     /// \brief Get the center of the view
@@ -160,7 +160,7 @@ public:
     /// \see getSize, setCenter
     ///
     ////////////////////////////////////////////////////////////
-    constexpr const Vector2f& getCenter() const;
+    constexpr const Vector2f& getCenter() const noexcept;
 
     ////////////////////////////////////////////////////////////
     /// \brief Get the size of the view
@@ -170,7 +170,7 @@ public:
     /// \see getCenter, setSize
     ///
     ////////////////////////////////////////////////////////////
-    constexpr const Vector2f& getSize() const;
+    constexpr const Vector2f& getSize() const noexcept;
 
     ////////////////////////////////////////////////////////////
     /// \brief Get the current orientation of the view
@@ -180,7 +180,7 @@ public:
     /// \see setRotation
     ///
     ////////////////////////////////////////////////////////////
-    constexpr float getRotation() const;
+    constexpr float getRotation() const noexcept;
 
     ////////////////////////////////////////////////////////////
     /// \brief Get the target viewport rectangle of the view
@@ -190,7 +190,7 @@ public:
     /// \see setViewport
     ///
     ////////////////////////////////////////////////////////////
-    constexpr const FloatRect& getViewport() const;
+    constexpr const FloatRect& getViewport() const noexcept;
 
     ////////////////////////////////////////////////////////////
     /// \brief Move the view relatively to its current position
@@ -201,7 +201,7 @@ public:
     /// \see setCenter, rotate, zoom
     ///
     ////////////////////////////////////////////////////////////
-    constexpr void move(const float offsetX, const float offsetY);
+    constexpr void move(const float offsetX, const float offsetY) noexcept;
 
     ////////////////////////////////////////////////////////////
     /// \brief Move the view relatively to its current position
@@ -211,7 +211,7 @@ public:
     /// \see setCenter, rotate, zoom
     ///
     ////////////////////////////////////////////////////////////
-    constexpr void move(const Vector2f& offset);
+    constexpr void move(const Vector2f& offset) noexcept;
 
     ////////////////////////////////////////////////////////////
     /// \brief Rotate the view relatively to its current orientation
@@ -238,7 +238,7 @@ public:
     /// \see setSize, move, rotate
     ///
     ////////////////////////////////////////////////////////////
-    constexpr void zoom(const float factor);
+    constexpr void zoom(const float factor) noexcept;
 
     ////////////////////////////////////////////////////////////
     /// \brief Get the projection transform of the view
