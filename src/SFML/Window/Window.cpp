@@ -154,8 +154,11 @@ void Window::create(WindowHandle handle, const ContextSettings& settings)
 void Window::close()
 {
     // Delete the context
-    delete m_context;
-    m_context = NULL;
+    if (m_context)
+    {
+        delete m_context;
+        m_context = NULL;
+    }
 
     // Close the base window
     WindowBase::close();
