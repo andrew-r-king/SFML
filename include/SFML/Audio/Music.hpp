@@ -84,7 +84,7 @@ public:
     };
 
     // Define the relevant Span types
-    typedef Span<Time> TimeSpan;
+    using TimeSpan = Span<Time>;
 
     ////////////////////////////////////////////////////////////
     /// \brief Default constructor
@@ -208,7 +208,7 @@ public:
     /// \see getLoopPoints
     ///
     ////////////////////////////////////////////////////////////
-    void setLoopPoints(TimeSpan timePoints);
+    void setLoopPoints(const TimeSpan& timePoints);
 
 protected:
 
@@ -261,7 +261,7 @@ private:
     /// \return The number of samples elapsed at the given time
     ///
     ////////////////////////////////////////////////////////////
-    Uint64 timeToSamples(Time position) const;
+    Uint64 timeToSamples(const Time& position) const;
 
     ////////////////////////////////////////////////////////////
     /// \brief Helper to convert a sample position to an sf::Time
@@ -271,7 +271,7 @@ private:
     /// \return The Time position of the given sample
     ///
     ////////////////////////////////////////////////////////////
-    Time samplesToTime(Uint64 samples) const;
+    Time samplesToTime(const Uint64 samples) const;
 
     ////////////////////////////////////////////////////////////
     // Member data

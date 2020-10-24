@@ -36,8 +36,8 @@ namespace sf
 {
 ////////////////////////////////////////////////////////////
 Music::Music() :
-m_file      (),
-m_loopSpan  (0, 0)
+    m_file(),
+    m_loopSpan(0, 0)
 {
 
 }
@@ -117,7 +117,7 @@ Music::TimeSpan Music::getLoopPoints() const
 
 
 ////////////////////////////////////////////////////////////
-void Music::setLoopPoints(TimeSpan timePoints)
+void Music::setLoopPoints(const TimeSpan& timePoints)
 {
     Span<Uint64> samplePoints(timeToSamples(timePoints.offset), timeToSamples(timePoints.length));
 
@@ -170,7 +170,7 @@ void Music::setLoopPoints(TimeSpan timePoints)
         setPlayingOffset(oldPos);
 
     // Resume
-    if (oldStatus == Playing)
+    if (oldStatus == Status::Playing)
         play();
 }
 
@@ -187,13 +187,18 @@ bool Music::onGetData(SoundStream::Chunk& data)
     // If the loop end is enabled and imminent, request less data.
     // This will trip an "onLoop()" call from the underlying SoundStream,
     // and we can then take action.
-    if (getLoop() && (m_loopSpan.length != 0) && (currentOffset <= loopEnd) && (currentOffset + toFill > loopEnd))
-        toFill = static_cast<std::size_t>(loopEnd - currentOffset);
+    bool loop = getLoop() && (m_loopSpan.length != 0);
+    if (loop)
+    {
+        if (currentOffset <= loopEnd && (currentOffset + toFill > loopEnd))
+            toFill = static_cast<std::size_t>(loopEnd - currentOffset);
+    }
 
     // Fill the chunk parameters
     data.samples = &m_samples[0];
     data.sampleCount = static_cast<std::size_t>(m_file.read(&m_samples[0], toFill));
-    currentOffset += data.sampleCount;
+    // currentOffset += data.sampleCount;
+    currentOffset += toFill;
 
     // Check if we have stopped obtaining samples or reached either the EOF or the loop end point
     return (data.sampleCount != 0) && (currentOffset < m_file.getSampleCount()) && !(currentOffset == loopEnd && m_loopSpan.length != 0);
@@ -214,19 +219,23 @@ Int64 Music::onLoop()
     // Called by underlying SoundStream so we can determine where to loop.
     Lock lock(m_mutex);
     Uint64 currentOffset = m_file.getSampleOffset();
-    if (getLoop() && (m_loopSpan.length != 0) && (currentOffset == m_loopSpan.offset + m_loopSpan.length))
+    Uint64 loopEnd = m_loopSpan.offset + m_loopSpan.length;
+
+    bool loop = getLoop();
+    if (loop && (m_loopSpan.length != 0) && (loopEnd - currentOffset <= 1))
     {
         // Looping is enabled, and either we're at the loop end, or we're at the EOF
         // when it's equivalent to the loop end (loop end takes priority). Send us to loop begin
         m_file.seek(m_loopSpan.offset);
         return m_file.getSampleOffset();
     }
-    else if (getLoop() && (currentOffset >= m_file.getSampleCount()))
+    else if (loop && (currentOffset >= m_file.getSampleCount()))
     {
         // If we're at the EOF, reset to 0
         m_file.seek(0);
         return 0;
     }
+
     return NoLoop;
 }
 
@@ -246,7 +255,7 @@ void Music::initialize()
 }
 
 ////////////////////////////////////////////////////////////
-Uint64 Music::timeToSamples(Time position) const
+Uint64 Music::timeToSamples(const Time& position) const
 {
     // Always ROUND, no unchecked truncation, hence the addition in the numerator.
     // This avoids most precision errors arising from "samples => Time => samples" conversions
@@ -257,7 +266,7 @@ Uint64 Music::timeToSamples(Time position) const
 
 
 ////////////////////////////////////////////////////////////
-Time Music::samplesToTime(Uint64 samples) const
+Time Music::samplesToTime(const Uint64 samples) const
 {
     Time position = Time(0);
 

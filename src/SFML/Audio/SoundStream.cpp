@@ -43,7 +43,7 @@ namespace sf
 SoundStream::SoundStream() :
 m_thread          (&SoundStream::streamData, this),
 m_threadMutex     (),
-m_threadStartState(Stopped),
+m_threadStartState(Status::Stopped),
 m_isStreaming     (false),
 m_buffers         (),
 m_channelCount    (0),
@@ -106,7 +106,7 @@ void SoundStream::play()
     }
 
     bool isStreaming = false;
-    Status threadStartState = Stopped;
+    Status threadStartState = Status::Stopped;
 
     {
         Lock lock(m_threadMutex);
@@ -116,15 +116,15 @@ void SoundStream::play()
     }
 
 
-    if (isStreaming && (threadStartState == Paused))
+    if (isStreaming && (threadStartState == Status::Paused))
     {
         // If the sound is paused, resume it
         Lock lock(m_threadMutex);
-        m_threadStartState = Playing;
+        m_threadStartState = Status::Playing;
         alCheck(alSourcePlay(m_source));
         return;
     }
-    else if (isStreaming && (threadStartState == Playing))
+    else if (isStreaming && (threadStartState == Status::Playing))
     {
         // If the sound is playing, stop it and continue as if it was stopped
         stop();
@@ -132,7 +132,7 @@ void SoundStream::play()
 
     // Start updating the stream in a separate thread to avoid blocking the application
     m_isStreaming = true;
-    m_threadStartState = Playing;
+    m_threadStartState = Status::Playing;
     m_thread.launch();
 }
 
@@ -147,7 +147,7 @@ void SoundStream::pause()
         if (!m_isStreaming)
             return;
 
-        m_threadStartState = Paused;
+        m_threadStartState = Status::Paused;
     }
 
     alCheck(alSourcePause(m_source));
@@ -191,7 +191,7 @@ SoundStream::Status SoundStream::getStatus() const
     Status status = SoundSource::getStatus();
 
     // To compensate for the lag between play() and alSourceplay()
-    if (status == Stopped)
+    if (status == Status::Stopped)
     {
         Lock lock(m_threadMutex);
 
@@ -218,7 +218,7 @@ void SoundStream::setPlayingOffset(Time timeOffset)
     // Restart streaming
     m_samplesProcessed = static_cast<Uint64>(timeOffset.asSeconds() * m_sampleRate * m_channelCount);
 
-    if (oldStatus == Stopped)
+    if (oldStatus == Status::Stopped)
         return;
 
     m_isStreaming = true;
@@ -280,7 +280,7 @@ void SoundStream::streamData()
         Lock lock(m_threadMutex);
 
         // Check if the thread was launched Stopped
-        if (m_threadStartState == Stopped)
+        if (m_threadStartState == Status::Stopped)
         {
             m_isStreaming = false;
             return;
@@ -302,7 +302,7 @@ void SoundStream::streamData()
         Lock lock(m_threadMutex);
 
         // Check if the thread was launched Paused
-        if (m_threadStartState == Paused)
+        if (m_threadStartState == Status::Paused)
             alCheck(alSourcePause(m_source));
     }
 
@@ -315,7 +315,7 @@ void SoundStream::streamData()
         }
 
         // The stream has been interrupted!
-        if (SoundSource::getStatus() == Stopped)
+        if (SoundSource::getStatus() == Status::Stopped)
         {
             if (!requestStop)
             {
@@ -389,7 +389,7 @@ void SoundStream::streamData()
         }
 
         // Leave some time for the other threads if the stream is still playing
-        if (SoundSource::getStatus() != Stopped)
+        if (SoundSource::getStatus() != Status::Stopped)
             sleep(m_processingInterval);
     }
 
