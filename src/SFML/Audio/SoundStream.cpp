@@ -52,7 +52,7 @@ m_format          (0),
 m_loop            (false),
 m_samplesProcessed(0),
 m_bufferSeeks     (),
-m_processingInterval(milliseconds(10))
+m_processingInterval(Time::milliseconds(10))
 {
 
 }
@@ -167,7 +167,7 @@ void SoundStream::stop()
     m_thread.wait();
 
     // Move to the beginning
-    onSeek(Time::Zero);
+    onSeek(Time(0));
 }
 
 
@@ -235,11 +235,11 @@ Time SoundStream::getPlayingOffset() const
         ALfloat secs = 0.f;
         alCheck(alGetSourcef(m_source, AL_SEC_OFFSET, &secs));
 
-        return seconds(secs + static_cast<float>(m_samplesProcessed) / m_sampleRate / m_channelCount);
+        return Time::seconds(secs + static_cast<float>(m_samplesProcessed) / m_sampleRate / m_channelCount);
     }
     else
     {
-        return Time::Zero;
+        return Time(0);
     }
 }
 
@@ -261,7 +261,7 @@ bool SoundStream::getLoop() const
 ////////////////////////////////////////////////////////////
 Int64 SoundStream::onLoop()
 {
-    onSeek(Time::Zero);
+    onSeek(Time(0));
     return 0;
 }
 

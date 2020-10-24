@@ -536,7 +536,7 @@ void threadFunction()
         // If we didn't receive a new work item, keep looping
         if (!workItem.targetBuffer)
         {
-            sf::sleep(sf::milliseconds(10));
+            sf::sleep(sf::Time::milliseconds(10));
 
             continue;
         }
@@ -572,7 +572,7 @@ void generateTerrain(sf::Vertex* buffer)
                 break;
         }
 
-        sf::sleep(sf::milliseconds(10));
+        sf::sleep(sf::Time::milliseconds(10));
     }
 
     // Queue all the new work items

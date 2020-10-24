@@ -70,10 +70,10 @@ int getAndroidApiLevel(ANativeActivity* activity)
     jfieldID sdkIntFieldID = lJNIEnv->GetStaticFieldID(versionClass, "SDK_INT", "I");
     if (sdkIntFieldID == NULL)
         return 0;
-    
+
     jint sdkInt = 0;
     sdkInt = lJNIEnv->GetStaticIntField(versionClass, sdkIntFieldID);
-    
+
     return sdkInt;
 }
 
@@ -97,8 +97,8 @@ static void initializeMain(ActivityStates* states)
     states->looper = looper;
 
     /**
-     * Acquire increments a reference counter on the looper. This keeps android 
-     * from collecting it before the activity thread has a chance to detach its 
+     * Acquire increments a reference counter on the looper. This keeps android
+     * from collecting it before the activity thread has a chance to detach its
      * input queue.
      */
     ALooper_acquire(states->looper);
@@ -174,7 +174,7 @@ void goToFullscreenMode(ANativeActivity* activity)
 
     // Default flags
     jint flags = 0;
-    
+
     // API Level 14
     if (apiLevel >= 14)
     {
@@ -313,7 +313,7 @@ static void onDestroy(ANativeActivity* activity)
     while (!states->terminated)
     {
         states->mutex.unlock();
-        sf::sleep(sf::milliseconds(20));
+        sf::sleep(sf::Time::milliseconds(20));
         states->mutex.lock();
     }
 
@@ -351,7 +351,7 @@ static void onNativeWindowCreated(ANativeActivity* activity, ANativeWindow* wind
     while(!(states->updated | states->terminated))
     {
         states->mutex.unlock();
-        sf::sleep(sf::milliseconds(10));
+        sf::sleep(sf::Time::milliseconds(10));
         states->mutex.lock();
     }
 }
@@ -376,7 +376,7 @@ static void onNativeWindowDestroyed(ANativeActivity* activity, ANativeWindow* wi
     while(!(states->updated | states->terminated))
     {
         states->mutex.unlock();
-        sf::sleep(sf::milliseconds(10));
+        sf::sleep(sf::Time::milliseconds(10));
         states->mutex.lock();
     }
 }
@@ -557,7 +557,7 @@ JNIEXPORT void ANativeActivity_onCreate(ANativeActivity* activity, void* savedSt
     while (!(states->initialized | states->terminated))
     {
         states->mutex.unlock();
-        sf::sleep(sf::milliseconds(20));
+        sf::sleep(sf::Time::milliseconds(20));
         states->mutex.lock();
     }
 

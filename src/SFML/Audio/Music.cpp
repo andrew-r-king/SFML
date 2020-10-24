@@ -166,7 +166,7 @@ void Music::setLoopPoints(TimeSpan timePoints)
     m_loopSpan = samplePoints;
 
     // Restore
-    if (oldPos != Time::Zero)
+    if (oldPos != Time(0))
         setPlayingOffset(oldPos);
 
     // Resume
@@ -259,11 +259,11 @@ Uint64 Music::timeToSamples(Time position) const
 ////////////////////////////////////////////////////////////
 Time Music::samplesToTime(Uint64 samples) const
 {
-    Time position = Time::Zero;
+    Time position = Time(0);
 
     // Make sure we don't divide by 0
     if (getSampleRate() != 0 && getChannelCount() != 0)
-        position = microseconds((samples * 1000000) / (getChannelCount() * getSampleRate()));
+        position = Time::microseconds((samples * 1000000) / (getChannelCount() * getSampleRate()));
 
     return position;
 }

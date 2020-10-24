@@ -39,7 +39,7 @@ namespace sf
 ////////////////////////////////////////////////////////////
 void sleep(Time duration)
 {
-    if (duration >= Time::Zero)
+    if (duration >= Time(0))
         priv::sleepImpl(duration);
 }
 

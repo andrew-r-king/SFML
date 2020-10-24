@@ -268,7 +268,7 @@ public:
     /// This function tries to connect to the server so it may take
     /// a while to complete, especially if the server is not
     /// reachable. To avoid blocking your application for too long,
-    /// you can use a timeout. The default value, Time::Zero, means that the
+    /// you can use a timeout. The default value, Time(0), means that the
     /// system timeout will be used (which is usually pretty long).
     ///
     /// \param server  Name or address of the FTP server to connect to
@@ -280,7 +280,7 @@ public:
     /// \see disconnect
     ///
     ////////////////////////////////////////////////////////////
-    Response connect(const IpAddress& server, unsigned short port = 21, Time timeout = Time::Zero);
+    Response connect(const IpAddress& server, unsigned short port = 21, Time timeout = Time(0));
 
     ////////////////////////////////////////////////////////////
     /// \brief Close the connection with the server

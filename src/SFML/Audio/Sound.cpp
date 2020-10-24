@@ -142,7 +142,7 @@ Time Sound::getPlayingOffset() const
     ALfloat secs = 0.f;
     alCheck(alGetSourcef(m_source, AL_SEC_OFFSET, &secs));
 
-    return seconds(secs);
+    return Time::seconds(secs);
 }
 
 

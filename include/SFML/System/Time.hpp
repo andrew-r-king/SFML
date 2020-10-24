@@ -29,6 +29,7 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <SFML/System/Export.hpp>
+#include <chrono>
 
 
 namespace sf
@@ -39,6 +40,14 @@ namespace sf
 ////////////////////////////////////////////////////////////
 class SFML_SYSTEM_API Time
 {
+    using ChronoClock = std::chrono::steady_clock;
+	using Mili = std::chrono::milliseconds;
+	using Micro = std::chrono::microseconds;
+	using Sec = std::chrono::seconds;
+
+	template <class Duration>
+	using Point = std::chrono::time_point<ChronoClock, Duration>;
+
 public:
 
     ////////////////////////////////////////////////////////////
@@ -47,7 +56,15 @@ public:
     /// Sets the time value to zero.
     ///
     ////////////////////////////////////////////////////////////
-    Time();
+    constexpr Time();
+
+    ////////////////////////////////////////////////////////////
+    /// \brief Construct from a number of microseconds
+    ///
+    /// \param microseconds Number of microseconds
+    ///
+    ////////////////////////////////////////////////////////////
+    explicit constexpr Time(const Int64 microseconds);
 
     ////////////////////////////////////////////////////////////
     /// \brief Return the time value as a number of seconds
@@ -57,7 +74,7 @@ public:
     /// \see asMilliseconds, asMicroseconds
     ///
     ////////////////////////////////////////////////////////////
-    float asSeconds() const;
+    constexpr float asSeconds() const;
 
     ////////////////////////////////////////////////////////////
     /// \brief Return the time value as a number of milliseconds
@@ -67,7 +84,7 @@ public:
     /// \see asSeconds, asMicroseconds
     ///
     ////////////////////////////////////////////////////////////
-    Int32 asMilliseconds() const;
+    constexpr Int32 asMilliseconds() const;
 
     ////////////////////////////////////////////////////////////
     /// \brief Return the time value as a number of microseconds
@@ -77,76 +94,59 @@ public:
     /// \see asSeconds, asMilliseconds
     ///
     ////////////////////////////////////////////////////////////
-    Int64 asMicroseconds() const;
+    constexpr Int64 asMicroseconds() const;
+
+
+	static Time now();
 
     ////////////////////////////////////////////////////////////
-    // Static member data
-    ////////////////////////////////////////////////////////////
-    static const Time Zero; //!< Predefined "zero" time value
-
-private:
-
-    friend SFML_SYSTEM_API Time seconds(float);
-    friend SFML_SYSTEM_API Time milliseconds(Int32);
-    friend SFML_SYSTEM_API Time microseconds(Int64);
-
-    ////////////////////////////////////////////////////////////
-    /// \brief Construct from a number of microseconds
+    /// \relates Time
+    /// \brief Construct a time value from a number of seconds
     ///
-    /// This function is internal. To construct time values,
-    /// use sf::seconds, sf::milliseconds or sf::microseconds instead.
+    /// \param amount Number of seconds
     ///
-    /// \param microseconds Number of microseconds
+    /// \return Time value constructed from the amount of seconds
+    ///
+    /// \see milliseconds, microseconds
     ///
     ////////////////////////////////////////////////////////////
-    explicit Time(Int64 microseconds);
+    static constexpr Time seconds(const float);
+
+    ////////////////////////////////////////////////////////////
+    /// \relates Time
+    /// \brief Construct a time value from a number of milliseconds
+    ///
+    /// \param amount Number of milliseconds
+    ///
+    /// \return Time value constructed from the amount of milliseconds
+    ///
+    /// \see seconds, microseconds
+    ///
+    ////////////////////////////////////////////////////////////
+    static constexpr Time milliseconds(const Int32);
+
+    ////////////////////////////////////////////////////////////
+    /// \relates Time
+    /// \brief Construct a time value from a number of microseconds
+    ///
+    /// \param amount Number of microseconds
+    ///
+    /// \return Time value constructed from the amount of microseconds
+    ///
+    /// \see seconds, milliseconds
+    ///
+    ////////////////////////////////////////////////////////////
+    static constexpr Time microseconds(const Int64);
+
+	static void sleep(const Time& inTime);
 
 private:
 
     ////////////////////////////////////////////////////////////
     // Member data
     ////////////////////////////////////////////////////////////
-    Int64 m_microseconds; //!< Time value stored as microseconds
+    Point<Micro> m_microseconds; //!< Time value stored as microseconds
 };
-
-////////////////////////////////////////////////////////////
-/// \relates Time
-/// \brief Construct a time value from a number of seconds
-///
-/// \param amount Number of seconds
-///
-/// \return Time value constructed from the amount of seconds
-///
-/// \see milliseconds, microseconds
-///
-////////////////////////////////////////////////////////////
-SFML_SYSTEM_API Time seconds(float amount);
-
-////////////////////////////////////////////////////////////
-/// \relates Time
-/// \brief Construct a time value from a number of milliseconds
-///
-/// \param amount Number of milliseconds
-///
-/// \return Time value constructed from the amount of milliseconds
-///
-/// \see seconds, microseconds
-///
-////////////////////////////////////////////////////////////
-SFML_SYSTEM_API Time milliseconds(Int32 amount);
-
-////////////////////////////////////////////////////////////
-/// \relates Time
-/// \brief Construct a time value from a number of microseconds
-///
-/// \param amount Number of microseconds
-///
-/// \return Time value constructed from the amount of microseconds
-///
-/// \see seconds, milliseconds
-///
-////////////////////////////////////////////////////////////
-SFML_SYSTEM_API Time microseconds(Int64 amount);
 
 ////////////////////////////////////////////////////////////
 /// \relates Time
@@ -158,7 +158,7 @@ SFML_SYSTEM_API Time microseconds(Int64 amount);
 /// \return True if both time values are equal
 ///
 ////////////////////////////////////////////////////////////
-SFML_SYSTEM_API bool operator ==(Time left, Time right);
+constexpr bool operator ==(const Time& left, const Time& right);
 
 ////////////////////////////////////////////////////////////
 /// \relates Time
@@ -170,7 +170,7 @@ SFML_SYSTEM_API bool operator ==(Time left, Time right);
 /// \return True if both time values are different
 ///
 ////////////////////////////////////////////////////////////
-SFML_SYSTEM_API bool operator !=(Time left, Time right);
+constexpr bool operator !=(const Time& left, const Time& right);
 
 ////////////////////////////////////////////////////////////
 /// \relates Time
@@ -182,7 +182,7 @@ SFML_SYSTEM_API bool operator !=(Time left, Time right);
 /// \return True if \a left is lesser than \a right
 ///
 ////////////////////////////////////////////////////////////
-SFML_SYSTEM_API bool operator <(Time left, Time right);
+constexpr bool operator <(const Time& left, const Time& right);
 
 ////////////////////////////////////////////////////////////
 /// \relates Time
@@ -194,7 +194,7 @@ SFML_SYSTEM_API bool operator <(Time left, Time right);
 /// \return True if \a left is greater than \a right
 ///
 ////////////////////////////////////////////////////////////
-SFML_SYSTEM_API bool operator >(Time left, Time right);
+constexpr bool operator >(const Time& left, const Time& right);
 
 ////////////////////////////////////////////////////////////
 /// \relates Time
@@ -206,7 +206,7 @@ SFML_SYSTEM_API bool operator >(Time left, Time right);
 /// \return True if \a left is lesser or equal than \a right
 ///
 ////////////////////////////////////////////////////////////
-SFML_SYSTEM_API bool operator <=(Time left, Time right);
+constexpr bool operator <=(const Time& left, const Time& right);
 
 ////////////////////////////////////////////////////////////
 /// \relates Time
@@ -218,7 +218,7 @@ SFML_SYSTEM_API bool operator <=(Time left, Time right);
 /// \return True if \a left is greater or equal than \a right
 ///
 ////////////////////////////////////////////////////////////
-SFML_SYSTEM_API bool operator >=(Time left, Time right);
+constexpr bool operator >=(const Time& left, const Time& right);
 
 ////////////////////////////////////////////////////////////
 /// \relates Time
@@ -229,7 +229,7 @@ SFML_SYSTEM_API bool operator >=(Time left, Time right);
 /// \return Opposite of the time value
 ///
 ////////////////////////////////////////////////////////////
-SFML_SYSTEM_API Time operator -(Time right);
+constexpr Time operator -(const Time& right);
 
 ////////////////////////////////////////////////////////////
 /// \relates Time
@@ -241,7 +241,7 @@ SFML_SYSTEM_API Time operator -(Time right);
 /// \return Sum of the two times values
 ///
 ////////////////////////////////////////////////////////////
-SFML_SYSTEM_API Time operator +(Time left, Time right);
+constexpr Time operator +(const Time& left, const Time& right);
 
 ////////////////////////////////////////////////////////////
 /// \relates Time
@@ -253,7 +253,7 @@ SFML_SYSTEM_API Time operator +(Time left, Time right);
 /// \return Sum of the two times values
 ///
 ////////////////////////////////////////////////////////////
-SFML_SYSTEM_API Time& operator +=(Time& left, Time right);
+constexpr Time& operator +=(Time& left, const Time& right);
 
 ////////////////////////////////////////////////////////////
 /// \relates Time
@@ -265,7 +265,7 @@ SFML_SYSTEM_API Time& operator +=(Time& left, Time right);
 /// \return Difference of the two times values
 ///
 ////////////////////////////////////////////////////////////
-SFML_SYSTEM_API Time operator -(Time left, Time right);
+constexpr Time operator -(Time left, const Time& right);
 
 ////////////////////////////////////////////////////////////
 /// \relates Time
@@ -277,7 +277,7 @@ SFML_SYSTEM_API Time operator -(Time left, Time right);
 /// \return Difference of the two times values
 ///
 ////////////////////////////////////////////////////////////
-SFML_SYSTEM_API Time& operator -=(Time& left, Time right);
+constexpr Time& operator -=(const Time& left, const Time& right);
 
 ////////////////////////////////////////////////////////////
 /// \relates Time
@@ -289,7 +289,7 @@ SFML_SYSTEM_API Time& operator -=(Time& left, Time right);
 /// \return \a left multiplied by \a right
 ///
 ////////////////////////////////////////////////////////////
-SFML_SYSTEM_API Time operator *(Time left, float right);
+constexpr Time operator *(const Time& left, const float right);
 
 ////////////////////////////////////////////////////////////
 /// \relates Time
@@ -301,19 +301,7 @@ SFML_SYSTEM_API Time operator *(Time left, float right);
 /// \return \a left multiplied by \a right
 ///
 ////////////////////////////////////////////////////////////
-SFML_SYSTEM_API Time operator *(Time left, Int64 right);
-
-////////////////////////////////////////////////////////////
-/// \relates Time
-/// \brief Overload of binary * operator to scale a time value
-///
-/// \param left  Left operand (a number)
-/// \param right Right operand (a time)
-///
-/// \return \a left multiplied by \a right
-///
-////////////////////////////////////////////////////////////
-SFML_SYSTEM_API Time operator *(float left, Time right);
+constexpr Time operator *(const Time& left, const Int64 right);
 
 ////////////////////////////////////////////////////////////
 /// \relates Time
@@ -325,7 +313,19 @@ SFML_SYSTEM_API Time operator *(float left, Time right);
 /// \return \a left multiplied by \a right
 ///
 ////////////////////////////////////////////////////////////
-SFML_SYSTEM_API Time operator *(Int64 left, Time right);
+constexpr Time operator *(const float left, const Time& right);
+
+////////////////////////////////////////////////////////////
+/// \relates Time
+/// \brief Overload of binary * operator to scale a time value
+///
+/// \param left  Left operand (a number)
+/// \param right Right operand (a time)
+///
+/// \return \a left multiplied by \a right
+///
+////////////////////////////////////////////////////////////
+constexpr Time operator *(const Int64 left, const Time& right);
 
 ////////////////////////////////////////////////////////////
 /// \relates Time
@@ -337,7 +337,7 @@ SFML_SYSTEM_API Time operator *(Int64 left, Time right);
 /// \return \a left multiplied by \a right
 ///
 ////////////////////////////////////////////////////////////
-SFML_SYSTEM_API Time& operator *=(Time& left, float right);
+constexpr Time& operator *=(Time& left, const float right);
 
 ////////////////////////////////////////////////////////////
 /// \relates Time
@@ -349,7 +349,7 @@ SFML_SYSTEM_API Time& operator *=(Time& left, float right);
 /// \return \a left multiplied by \a right
 ///
 ////////////////////////////////////////////////////////////
-SFML_SYSTEM_API Time& operator *=(Time& left, Int64 right);
+constexpr Time& operator *=(Time& left, const Int64 right);
 
 ////////////////////////////////////////////////////////////
 /// \relates Time
@@ -361,7 +361,7 @@ SFML_SYSTEM_API Time& operator *=(Time& left, Int64 right);
 /// \return \a left divided by \a right
 ///
 ////////////////////////////////////////////////////////////
-SFML_SYSTEM_API Time operator /(Time left, float right);
+constexpr Time operator /(const Time& left, const float right);
 
 ////////////////////////////////////////////////////////////
 /// \relates Time
@@ -373,7 +373,7 @@ SFML_SYSTEM_API Time operator /(Time left, float right);
 /// \return \a left divided by \a right
 ///
 ////////////////////////////////////////////////////////////
-SFML_SYSTEM_API Time operator /(Time left, Int64 right);
+constexpr Time operator /(const Time& left, const Int64 right);
 
 ////////////////////////////////////////////////////////////
 /// \relates Time
@@ -385,7 +385,7 @@ SFML_SYSTEM_API Time operator /(Time left, Int64 right);
 /// \return \a left divided by \a right
 ///
 ////////////////////////////////////////////////////////////
-SFML_SYSTEM_API Time& operator /=(Time& left, float right);
+constexpr Time& operator /=(Time& left, const float right);
 
 ////////////////////////////////////////////////////////////
 /// \relates Time
@@ -397,7 +397,7 @@ SFML_SYSTEM_API Time& operator /=(Time& left, float right);
 /// \return \a left divided by \a right
 ///
 ////////////////////////////////////////////////////////////
-SFML_SYSTEM_API Time& operator /=(Time& left, Int64 right);
+constexpr Time& operator /=(Time& left, const Int64 right);
 
 ////////////////////////////////////////////////////////////
 /// \relates Time
@@ -409,7 +409,7 @@ SFML_SYSTEM_API Time& operator /=(Time& left, Int64 right);
 /// \return \a left divided by \a right
 ///
 ////////////////////////////////////////////////////////////
-SFML_SYSTEM_API float operator /(Time left, Time right);
+constexpr float operator /(const Time& left, const Time& right);
 
 ////////////////////////////////////////////////////////////
 /// \relates Time
@@ -421,7 +421,7 @@ SFML_SYSTEM_API float operator /(Time left, Time right);
 /// \return \a left modulo \a right
 ///
 ////////////////////////////////////////////////////////////
-SFML_SYSTEM_API Time operator %(Time left, Time right);
+constexpr Time operator %(const Time& left, const Time& right);
 
 ////////////////////////////////////////////////////////////
 /// \relates Time
@@ -433,9 +433,11 @@ SFML_SYSTEM_API Time operator %(Time left, Time right);
 /// \return \a left modulo \a right
 ///
 ////////////////////////////////////////////////////////////
-SFML_SYSTEM_API Time& operator %=(Time& left, Time right);
+constexpr Time& operator %=(Time& left, const Time& right);
 
 } // namespace sf
+
+#include <SFML/System/Time.inl>
 
 
 #endif // SFML_TIME_HPP
@@ -464,13 +466,13 @@ SFML_SYSTEM_API Time& operator %=(Time& left, Time right);
 ///
 /// Usage example:
 /// \code
-/// sf::Time t1 = sf::seconds(0.1f);
+/// sf::Time t1 = sf::Time::seconds(0.1f);
 /// Int32 milli = t1.asMilliseconds(); // 100
 ///
-/// sf::Time t2 = sf::milliseconds(30);
+/// sf::Time t2 = sf::Time::milliseconds(30);
 /// Int64 micro = t2.asMicroseconds(); // 30000
 ///
-/// sf::Time t3 = sf::microseconds(-800000);
+/// sf::Time t3 = sf::Time::microseconds(-800000);
 /// float sec = t3.asSeconds(); // -0.8
 /// \endcode
 ///
@@ -480,7 +482,7 @@ SFML_SYSTEM_API Time& operator %=(Time& left, Time right);
 ///    position += speed * elapsed.asSeconds();
 /// }
 ///
-/// update(sf::milliseconds(100));
+/// update(sf::Time::milliseconds(100));
 /// \endcode
 ///
 /// \see sf::Clock

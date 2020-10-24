@@ -198,9 +198,9 @@ Time InputSoundFile::getDuration() const
 {
     // Make sure we don't divide by 0
     if (m_channelCount == 0 || m_sampleRate == 0)
-        return Time::Zero;
+        return Time(0);
 
-    return seconds(static_cast<float>(m_sampleCount) / m_channelCount / m_sampleRate);
+    return Time::seconds(static_cast<float>(m_sampleCount) / m_channelCount / m_sampleRate);
 }
 
 
@@ -209,9 +209,9 @@ Time InputSoundFile::getTimeOffset() const
 {
     // Make sure we don't divide by 0
     if (m_channelCount == 0 || m_sampleRate == 0)
-        return Time::Zero;
+        return Time(0);
 
-    return seconds(static_cast<float>(m_sampleOffset) / m_channelCount / m_sampleRate);
+    return Time::seconds(static_cast<float>(m_sampleOffset) / m_channelCount / m_sampleRate);
 }
 
 

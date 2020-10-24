@@ -745,7 +745,7 @@ m_lastInputTime  (0)
         sizeHints->flags &= ~(PMinSize | PMaxSize);
         XSetWMNormalHints(m_display, m_window, sizeHints);
         XFree(sizeHints);
- 
+
         setVideoMode(mode);
         switchToFullscreen();
     }
@@ -1137,7 +1137,7 @@ void WindowImplX11::setMouseCursorGrabbed(bool grabbed)
             }
 
             // The cursor grab failed, trying again after a small sleep
-            sf::sleep(sf::milliseconds(50));
+            sf::sleep(sf::Time::milliseconds(50));
         }
 
         if (!m_cursorGrabbed)
@@ -1736,7 +1736,7 @@ bool WindowImplX11::processEvent(XEvent& windowEvent)
                     }
 
                     // The cursor grab failed, trying again after a small sleep
-                    sf::sleep(sf::milliseconds(50));
+                    sf::sleep(sf::Time::milliseconds(50));
                 }
 
                 if (!m_cursorGrabbed)

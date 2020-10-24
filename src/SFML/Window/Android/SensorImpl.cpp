@@ -90,7 +90,7 @@ bool SensorImpl::open(Sensor::Type sensor)
         return false;
 
     // Get the minimum delay allowed between events
-    Time minimumDelay = microseconds(ASensor_getMinDelay(m_sensor));
+    Time minimumDelay = Time::microseconds(ASensor_getMinDelay(m_sensor));
 
     // Set the event rate (not to consume too much battery)
     ASensorEventQueue_setEventRate(sensorEventQueue, m_sensor, minimumDelay.asMicroseconds());

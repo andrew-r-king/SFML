@@ -93,7 +93,7 @@ int main()
 
     // Define the paddles properties
     sf::Clock AITimer;
-    const sf::Time AITime   = sf::seconds(0.1f);
+    const sf::Time AITime   = sf::Time::seconds(0.1f);
     const float paddleSpeed = 400.f;
     float rightPaddleSpeed  = 0.f;
     const float ballSpeed   = 400.f;

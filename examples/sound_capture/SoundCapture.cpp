@@ -79,7 +79,7 @@ int main()
             std::cout << std::flush;
 
             // Leave some CPU time for other threads
-            sf::sleep(sf::milliseconds(100));
+            sf::sleep(sf::Time::milliseconds(100));
         }
     }
 

@@ -32,7 +32,7 @@ void playSound()
     while (sound.getStatus() == sf::Sound::Playing)
     {
         // Leave some CPU time for other processes
-        sf::sleep(sf::milliseconds(100));
+        sf::sleep(sf::Time::milliseconds(100));
 
         // Display the playing position
         std::cout << "\rPlaying... " << sound.getPlayingOffset().asSeconds() << " sec        ";
@@ -66,7 +66,7 @@ void playMusic(const std::string& filename)
     while (music.getStatus() == sf::Music::Playing)
     {
         // Leave some CPU time for other processes
-        sf::sleep(sf::milliseconds(100));
+        sf::sleep(sf::Time::milliseconds(100));
 
         // Display the playing position
         std::cout << "\rPlaying... " << music.getPlayingOffset().asSeconds() << " sec        ";

@@ -155,7 +155,7 @@ int main(int argc, char *argv[])
                     {
                         image.setPosition(event.touch.x, event.touch.y);
 #if defined(USE_JNI)
-                        vibrate(sf::milliseconds(10));
+                        vibrate(sf::Time::milliseconds(10));
 #endif
                     }
                     break;
@@ -170,7 +170,7 @@ int main(int argc, char *argv[])
             window.display();
         }
         else {
-            sf::sleep(sf::milliseconds(100));
+            sf::sleep(sf::Time::milliseconds(100));
         }
     }
 }

@@ -78,7 +78,7 @@ private:
 
         // No new data has arrived since last update: wait until we get some
         while ((m_offset >= m_samples.size()) && !m_hasFinished)
-            sf::sleep(sf::milliseconds(10));
+            sf::sleep(sf::Time::milliseconds(10));
 
         // Copy samples into a local buffer to avoid synchronization problems
         // (don't forget that we run in two separate threads)
@@ -179,7 +179,7 @@ void doServer(unsigned short port)
     while (audioStream.getStatus() != sf::SoundStream::Stopped)
     {
         // Leave some CPU time for other threads
-        sf::sleep(sf::milliseconds(100));
+        sf::sleep(sf::Time::milliseconds(100));
     }
 
     std::cin.ignore(10000, '\n');
@@ -195,6 +195,6 @@ void doServer(unsigned short port)
     while (audioStream.getStatus() != sf::SoundStream::Stopped)
     {
         // Leave some CPU time for other threads
-        sf::sleep(sf::milliseconds(100));
+        sf::sleep(sf::Time::milliseconds(100));
     }
 }

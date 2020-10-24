@@ -80,7 +80,7 @@ Time ClockImpl::getCurrentTime()
     }
 
     // Return the current time as microseconds
-    return sf::microseconds(1000000 * time.QuadPart / frequency.QuadPart);
+    return sf::Time::microseconds(1000000 * time.QuadPart / frequency.QuadPart);
 }
 
 } // namespace priv
