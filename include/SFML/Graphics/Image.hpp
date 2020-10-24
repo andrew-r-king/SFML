@@ -304,7 +304,7 @@ private:
 ///
 /// // Create a 20x20 image filled with black color
 /// sf::Image image;
-/// image.create(20, 20, sf::Color::Black);
+/// image.create(20, 20, sf::Colors::Black);
 ///
 /// // Copy image1 on image2 at position (10, 10)
 /// image.copy(background, 10, 10);

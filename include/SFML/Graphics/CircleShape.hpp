@@ -133,7 +133,7 @@ private:
 /// \code
 /// sf::CircleShape circle;
 /// circle.setRadius(150);
-/// circle.setOutlineColor(sf::Color::Red);
+/// circle.setOutlineColor(sf::Colors::Red);
 /// circle.setOutlineThickness(5);
 /// circle.setPosition(10, 20);
 /// ...

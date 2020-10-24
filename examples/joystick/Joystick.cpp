@@ -146,11 +146,11 @@ int main()
     {
         it->second.label.setFont(font);
         it->second.label.setCharacterSize(14);
-        it->second.label.setFillColor(sf::Color::White);
+        it->second.label.setFillColor(sf::Colors::White);
 
         it->second.value.setFont(font);
         it->second.value.setCharacterSize(14);
-        it->second.value.setFillColor(sf::Color::White);
+        it->second.value.setFillColor(sf::Colors::White);
     }
 
     // Update initially displayed joystick values if a joystick is already connected on startup

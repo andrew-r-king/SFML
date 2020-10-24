@@ -23,7 +23,7 @@ int vibrate(sf::Time duration)
 {
     // First we'll need the native activity handle
     ANativeActivity *activity = sf::getNativeActivity();
-    
+
     // Retrieve the JVM and JNI environment
     JavaVM* vm = activity->vm;
     JNIEnv* env = activity->env;
@@ -41,22 +41,22 @@ int vibrate(sf::Time duration)
     // Retrieve class information
     jclass natact = env->FindClass("android/app/NativeActivity");
     jclass context = env->FindClass("android/content/Context");
-    
+
     // Get the value of a constant
     jfieldID fid = env->GetStaticFieldID(context, "VIBRATOR_SERVICE", "Ljava/lang/String;");
     jobject svcstr = env->GetStaticObjectField(context, fid);
-    
+
     // Get the method 'getSystemService' and call it
     jmethodID getss = env->GetMethodID(natact, "getSystemService", "(Ljava/lang/String;)Ljava/lang/Object;");
     jobject vib_obj = env->CallObjectMethod(activity->clazz, getss, svcstr);
-    
+
     // Get the object's class and retrieve the member name
     jclass vib_cls = env->GetObjectClass(vib_obj);
-    jmethodID vibrate = env->GetMethodID(vib_cls, "vibrate", "(J)V"); 
-    
+    jmethodID vibrate = env->GetMethodID(vib_cls, "vibrate", "(J)V");
+
     // Determine the timeframe
     jlong length = duration.asMilliseconds();
-    
+
     // Bzzz!
     env->CallVoidMethod(vib_obj, vibrate, length);
 
@@ -66,7 +66,7 @@ int vibrate(sf::Time duration)
     env->DeleteLocalRef(svcstr);
     env->DeleteLocalRef(context);
     env->DeleteLocalRef(natact);
-    
+
     // Detach thread again
     vm->DetachCurrentThread();
 }
@@ -95,7 +95,7 @@ int main(int argc, char *argv[])
         return EXIT_FAILURE;
 
     sf::Text text("Tap anywhere to move the logo.", font, 64);
-    text.setFillColor(sf::Color::Black);
+    text.setFillColor(sf::Colors::Black);
     text.setPosition(10, 10);
 
     // Loading canary.wav fails for me for now; haven't had time to test why
@@ -108,7 +108,7 @@ int main(int argc, char *argv[])
 
     sf::View view = window.getDefaultView();
 
-    sf::Color background = sf::Color::White;
+    sf::Color background = sf::Colors::White;
 
     // We shouldn't try drawing to the screen while in background
     // so we'll have to track that. You can do minor background
@@ -136,12 +136,12 @@ int main(int argc, char *argv[])
                     window.setView(view);
                     break;
                 case sf::Event::LostFocus:
-                    background = sf::Color::Black;
+                    background = sf::Colors::Black;
                     break;
                 case sf::Event::GainedFocus:
-                    background = sf::Color::White;
+                    background = sf::Colors::White;
                     break;
-                
+
                 // On Android MouseLeft/MouseEntered are (for now) triggered,
                 // whenever the app loses or gains focus.
                 case sf::Event::MouseLeft:

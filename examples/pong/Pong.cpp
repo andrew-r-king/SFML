@@ -53,7 +53,7 @@ int main()
     sf::RectangleShape leftPaddle;
     leftPaddle.setSize(paddleSize - sf::Vector2f(3, 3));
     leftPaddle.setOutlineThickness(3);
-    leftPaddle.setOutlineColor(sf::Color::Black);
+    leftPaddle.setOutlineColor(sf::Colors::Black);
     leftPaddle.setFillColor(sf::Color(100, 100, 200));
     leftPaddle.setOrigin(paddleSize / 2.f);
 
@@ -61,7 +61,7 @@ int main()
     sf::RectangleShape rightPaddle;
     rightPaddle.setSize(paddleSize - sf::Vector2f(3, 3));
     rightPaddle.setOutlineThickness(3);
-    rightPaddle.setOutlineColor(sf::Color::Black);
+    rightPaddle.setOutlineColor(sf::Colors::Black);
     rightPaddle.setFillColor(sf::Color(200, 100, 100));
     rightPaddle.setOrigin(paddleSize / 2.f);
 
@@ -69,8 +69,8 @@ int main()
     sf::CircleShape ball;
     ball.setRadius(ballRadius - 3);
     ball.setOutlineThickness(3);
-    ball.setOutlineColor(sf::Color::Black);
-    ball.setFillColor(sf::Color::White);
+    ball.setOutlineColor(sf::Colors::Black);
+    ball.setFillColor(sf::Colors::White);
     ball.setOrigin(ballRadius / 2, ballRadius / 2);
 
     // Load the text font
@@ -83,8 +83,8 @@ int main()
     pauseMessage.setFont(font);
     pauseMessage.setCharacterSize(40);
     pauseMessage.setPosition(170.f, 150.f);
-    pauseMessage.setFillColor(sf::Color::White);
-    
+    pauseMessage.setFillColor(sf::Colors::White);
+
     #ifdef SFML_SYSTEM_IOS
     pauseMessage.setString("Welcome to SFML pong!\nTouch the screen to start the game");
     #else
@@ -139,7 +139,7 @@ int main()
                     while (std::abs(std::cos(ballAngle)) < 0.7f);
                 }
             }
-            
+
             // Window size changed, adjust view appropriately
             if (event.type == sf::Event::Resized)
             {
@@ -165,7 +165,7 @@ int main()
             {
                 leftPaddle.move(0.f, paddleSpeed * deltaTime);
             }
-            
+
             if (sf::Touch::isDown(0))
             {
                 sf::Vector2i pos = sf::Touch::getPosition(0);
@@ -201,7 +201,7 @@ int main()
             #else
             const std::string inputString = "Press space to restart or\nescape to exit";
             #endif
-            
+
             // Check collisions between the ball and the screen
             if (ball.getPosition().x - ballRadius < 0.f)
             {

@@ -73,7 +73,7 @@ std::size_t CircleShape::getPointCount() const
 ////////////////////////////////////////////////////////////
 Vector2f CircleShape::getPoint(std::size_t index) const
 {
-    float angle = index * 2 * math::pi / m_pointCount - math::pi / 2;
+    float angle = index * 2 * Math::pi / m_pointCount - Math::pi / 2;
     float x = std::cos(angle) * m_radius;
     float y = std::sin(angle) * m_radius;
 

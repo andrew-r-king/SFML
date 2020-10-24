@@ -93,7 +93,7 @@ public:
     /// This color is modulated (multiplied) with the shape's
     /// texture if any. It can be used to colorize the shape,
     /// or change its global opacity.
-    /// You can use sf::Color::Transparent to make the inside of
+    /// You can use sf::Colors::Transparent to make the inside of
     /// the shape transparent, and have the outline alone.
     /// By default, the shape's fill color is opaque white.
     ///
@@ -342,7 +342,7 @@ private:
 ///
 /// Each feature is optional, and can be disabled easily:
 /// \li the texture can be null
-/// \li the fill/outline colors can be sf::Color::Transparent
+/// \li the fill/outline colors can be sf::Colors::Transparent
 /// \li the outline thickness can be zero
 ///
 /// You can write your own derived shape class, there are only

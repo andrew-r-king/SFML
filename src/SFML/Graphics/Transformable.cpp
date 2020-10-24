@@ -184,7 +184,7 @@ const Transform& Transformable::getTransform() const
     // Recompute the combined transform if needed
     if (m_transformNeedUpdate)
     {
-        float angle  = -m_rotation * math::pi / 180.f;
+        float angle  = -m_rotation * Math::pi / 180.f;
         float cosine = static_cast<float>(std::cos(angle));
         float sine   = static_cast<float>(std::sin(angle));
         float sxc    = m_scale.x * cosine;

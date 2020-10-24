@@ -98,14 +98,14 @@ int main()
     // Set up our text drawables
     statusText.setFont(font);
     statusText.setCharacterSize(28);
-    statusText.setFillColor(sf::Color::White);
-    statusText.setOutlineColor(sf::Color::Black);
+    statusText.setFillColor(sf::Colors::White);
+    statusText.setOutlineColor(sf::Colors::Black);
     statusText.setOutlineThickness(2.0f);
 
     hudText.setFont(font);
     hudText.setCharacterSize(14);
-    hudText.setFillColor(sf::Color::White);
-    hudText.setOutlineColor(sf::Color::Black);
+    hudText.setFillColor(sf::Colors::White);
+    hudText.setOutlineColor(sf::Colors::Black);
     hudText.setOutlineThickness(2.0f);
     hudText.setPosition(5.0f, 5.0f);
 
@@ -359,7 +359,7 @@ sf::Color getSnowcapTerrainColor(float elevation, float moisture)
 {
     sf::Color highlandsColor = getHighlandsTerrainColor(elevation, moisture);
 
-    sf::Color color = sf::Color::White;
+    sf::Color color = sf::Colors::White;
 
     float factor = std::min((elevation - snowcapHeight) / 0.05f, 1.f);
 

@@ -234,7 +234,7 @@ public:
         }
 
         // Render the updated scene to the off-screen surface
-        m_surface.clear(sf::Color::White);
+        m_surface.clear(sf::Colors::White);
         m_surface.draw(m_backgroundSprite);
         for (std::size_t i = 0; i < m_entities.size(); ++i)
             m_surface.draw(m_entities[i]);

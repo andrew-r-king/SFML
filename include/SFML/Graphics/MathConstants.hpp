@@ -31,7 +31,7 @@
 
 namespace sf
 {
-namespace math
+namespace Math
 {
 #if __cplusplus >= 202002L
 	template <typename T>

@@ -104,7 +104,7 @@ namespace Glsl
     /// \code
     /// sf::Glsl::Vec4 zeroVector;
     /// sf::Glsl::Vec4 vector(1.f, 2.f, 3.f, 4.f);
-    /// sf::Glsl::Vec4 color = sf::Color::Cyan;
+    /// sf::Glsl::Vec4 color = sf::Colors::Cyan;
     /// \endcode
     ////////////////////////////////////////////////////////////
     typedef implementation-defined Vec4;
@@ -118,7 +118,7 @@ namespace Glsl
     /// \code
     /// sf::Glsl::Ivec4 zeroVector;
     /// sf::Glsl::Ivec4 vector(1, 2, 3, 4);
-    /// sf::Glsl::Ivec4 color = sf::Color::Cyan;
+    /// sf::Glsl::Ivec4 color = sf::Colors::Cyan;
     /// \endcode
     ////////////////////////////////////////////////////////////
     typedef implementation-defined Ivec4;

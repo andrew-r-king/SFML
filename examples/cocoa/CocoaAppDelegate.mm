@@ -36,7 +36,7 @@ struct SFMLmainWindow
 {
     SFMLmainWindow(sf::WindowHandle win) :
     renderWindow(win),
-    background(sf::Color::Blue)
+    background(sf::Colors::Blue)
     {
         std::string resPath = [[[NSBundle mainBundle] resourcePath] tostdstring];
         if (!logo.loadFromFile(resPath + "/logo.png"))
@@ -57,7 +57,7 @@ struct SFMLmainWindow
         if (!font.loadFromFile(resPath + "/sansation.ttf"))
             NSLog(@"Couldn't load the font");
 
-        text.setFillColor(sf::Color::White);
+        text.setFillColor(sf::Colors::White);
         text.setFont(font);
     }
 
@@ -186,11 +186,11 @@ struct SFMLmainWindow
         // Convert title to color
         NSString* color = [[sender selectedItem] title];
         if ([color isEqualToString:BLUE])
-            self.mainWindow->background = sf::Color::Blue;
+            self.mainWindow->background = sf::Colors::Blue;
         else if ([color isEqualToString:GREEN])
-            self.mainWindow->background = sf::Color::Green;
+            self.mainWindow->background = sf::Colors::Green;
         else
-            self.mainWindow->background = sf::Color::Red;
+            self.mainWindow->background = sf::Colors::Red;
     }
 }
 

@@ -376,7 +376,7 @@ JoystickState JoystickImpl::update()
         // Special case for POV, it is given as an angle
         if (pos.dwPOV != 0xFFFF)
         {
-            float angle = pos.dwPOV / 18000.f * math::pi;
+            float angle = pos.dwPOV / 18000.f * Math::pi;
             state.axes[Joystick::PovX] = std::sin(angle) * 100;
             state.axes[Joystick::PovY] = std::cos(angle) * 100;
         }
@@ -914,7 +914,7 @@ JoystickState JoystickImpl::updateDInputBuffered()
 
                     if (value != 0xFFFF)
                     {
-                        float angle = (static_cast<float>(value)) * math::pi / DI_DEGREES / 180.f;
+                        float angle = (static_cast<float>(value)) * Math::pi / DI_DEGREES / 180.f;
 
                         m_state.axes[j] = std::sin(angle) * 100.f;
                     }
@@ -929,7 +929,7 @@ JoystickState JoystickImpl::updateDInputBuffered()
 
                     if (value != 0xFFFF)
                     {
-                        float angle = (static_cast<float>(value)) * math::pi / DI_DEGREES / 180.f;
+                        float angle = (static_cast<float>(value)) * Math::pi / DI_DEGREES / 180.f;
 
                         m_state.axes[j] = std::cos(angle) * 100.f;
                     }
@@ -1016,7 +1016,7 @@ JoystickState JoystickImpl::updateDInputPolled()
 
                     if (value != 0xFFFF)
                     {
-                        float angle = (static_cast<float>(value)) * math::pi / DI_DEGREES / 180.f;
+                        float angle = (static_cast<float>(value)) * Math::pi / DI_DEGREES / 180.f;
 
                         state.axes[i] = std::sin(angle) * 100.f;
                     }
@@ -1031,7 +1031,7 @@ JoystickState JoystickImpl::updateDInputPolled()
 
                     if (value != 0xFFFF)
                     {
-                        float angle = (static_cast<float>(value)) * math::pi / DI_DEGREES / 180.f;
+                        float angle = (static_cast<float>(value)) * Math::pi / DI_DEGREES / 180.f;
 
                         state.axes[i] = std::cos(angle) * 100.f;
                     }
