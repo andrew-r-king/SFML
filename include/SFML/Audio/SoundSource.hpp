@@ -251,6 +251,14 @@ public:
     SoundSource& operator =(const SoundSource& right);
 
     ////////////////////////////////////////////////////////////
+    /// \brief Get the OpenAL source identifier
+    ///
+    /// \return The OpenAL source identifier for the sound
+    ///
+    ////////////////////////////////////////////////////////////
+    unsigned int getSource() const noexcept;
+
+    ////////////////////////////////////////////////////////////
     /// \brief Start or resume playing the sound source
     ///
     /// This function starts the source if it was stopped, resumes

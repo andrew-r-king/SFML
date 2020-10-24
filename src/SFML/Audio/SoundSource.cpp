@@ -190,6 +190,12 @@ SoundSource& SoundSource::operator =(const SoundSource& right)
 
 
 ////////////////////////////////////////////////////////////
+unsigned int SoundSource::getSource() const noexcept
+{
+    return m_source;
+}
+
+////////////////////////////////////////////////////////////
 SoundSource::Status SoundSource::getStatus() const
 {
     ALint status;
