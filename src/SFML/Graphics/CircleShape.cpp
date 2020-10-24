@@ -26,6 +26,7 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <SFML/Graphics/CircleShape.hpp>
+#include <SFML/Graphics/MathConstants.hpp>
 #include <cmath>
 
 
@@ -72,9 +73,7 @@ std::size_t CircleShape::getPointCount() const
 ////////////////////////////////////////////////////////////
 Vector2f CircleShape::getPoint(std::size_t index) const
 {
-    static const float pi = 3.141592654f;
-
-    float angle = index * 2 * pi / m_pointCount - pi / 2;
+    float angle = index * 2 * math::pi / m_pointCount - math::pi / 2;
     float x = std::cos(angle) * m_radius;
     float y = std::sin(angle) * m_radius;
 

@@ -22,52 +22,26 @@
 //
 ////////////////////////////////////////////////////////////
 
-////////////////////////////////////////////////////////////
-// Headers
-////////////////////////////////////////////////////////////
-#include <SFML/Graphics/View.hpp>
-#include <cmath>
+#ifndef SFML_MATH_CONSTANTS_HPP
+#define SFML_MATH_CONSTANTS_HPP
 
+#if __cplusplus >= 202002L
+	#include <numbers>
+#endif
 
 namespace sf
 {
-////////////////////////////////////////////////////////////
-View::View()
+namespace math
 {
-    reset(FloatRect(0, 0, 1000, 1000));
+#if __cplusplus >= 202002L
+	template <typename T>
+	static constexpr auto pi_v = std::numbers::pi_v<T>;
+
+	static constexpr auto pi = std::numbers::pi;
+#else
+	static constexpr float pi = 3.141592654f;
+#endif
+}
 }
 
-
-////////////////////////////////////////////////////////////
-View::View(const FloatRect& rectangle)
-{
-    reset(rectangle);
-}
-
-
-////////////////////////////////////////////////////////////
-View::View(const Vector2f& center, const Vector2f& size) :
-    m_center(center),
-    m_size(size)
-{
-
-}
-
-////////////////////////////////////////////////////////////
-void View::setRotation(const float angle)
-{
-    m_rotation = static_cast<float>(fmod(angle, 360));
-    if (m_rotation < 0)
-        m_rotation += 360.f;
-
-    m_transformUpdated    = false;
-    m_invTransformUpdated = false;
-}
-
-////////////////////////////////////////////////////////////
-void View::rotate(const float angle)
-{
-    setRotation(m_rotation + angle);
-}
-
-} // namespace sf
+#endif // SFML_MATH_CONSTANTS_HPP

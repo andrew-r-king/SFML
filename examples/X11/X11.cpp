@@ -4,6 +4,7 @@
 ////////////////////////////////////////////////////////////
 #include <SFML/Window.hpp>
 #include <SFML/System/Err.hpp>
+#include <SFML/Graphics/MathConstants.hpp>
 
 #define GLAD_GL_IMPLEMENTATION
 #include "gl.h"
@@ -42,8 +43,7 @@ void initialize(sf::Window& window)
     // Setup a perspective projection
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    static const float pi = 3.141592654f;
-    float extent = std::tan(90.0f * pi / 360.0f);
+    float extent = std::tan(90.0f * sf::math::pi / 360.0f);
 
 #ifdef SFML_OPENGL_ES
     glFrustumf(-extent, extent, -extent, extent, 1.0f, 500.0f);

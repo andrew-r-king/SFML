@@ -26,6 +26,7 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <SFML/Graphics/Transform.hpp>
+#include <SFML/Graphics/MathConstants.hpp>
 #include <cmath>
 
 
@@ -185,7 +186,7 @@ constexpr Transform& Transform::translate(const Vector2f& offset)
 ////////////////////////////////////////////////////////////
 constexpr Transform& Transform::rotate(float angle)
 {
-    float rad = angle * 3.141592654f / 180.f;
+    float rad = angle * math::pi / 180.f;
     float cosine = std::cos(rad);
     float sine = std::sin(rad);
 
@@ -200,7 +201,7 @@ constexpr Transform& Transform::rotate(float angle)
 ////////////////////////////////////////////////////////////
 constexpr Transform& Transform::rotate(const float angle, const float centerX, const float centerY)
 {
-    float rad = angle * 3.141592654f / 180.f;
+    float rad = angle * math::pi / 180.f;
     float cosine = std::cos(rad);
     float sine = std::sin(rad);
 

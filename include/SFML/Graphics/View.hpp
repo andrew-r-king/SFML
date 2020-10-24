@@ -78,7 +78,7 @@ public:
     /// \see setSize, getCenter
     ///
     ////////////////////////////////////////////////////////////
-    void setCenter(float x, float y);
+    constexpr void setCenter(const float x, const float y);
 
     ////////////////////////////////////////////////////////////
     /// \brief Set the center of the view
@@ -88,7 +88,7 @@ public:
     /// \see setSize, getCenter
     ///
     ////////////////////////////////////////////////////////////
-    void setCenter(const Vector2f& center);
+    constexpr void setCenter(const Vector2f& center);
 
     ////////////////////////////////////////////////////////////
     /// \brief Set the size of the view
@@ -99,7 +99,7 @@ public:
     /// \see setCenter, getCenter
     ///
     ////////////////////////////////////////////////////////////
-    void setSize(float width, float height);
+    constexpr void setSize(const float width, const float height);
 
     ////////////////////////////////////////////////////////////
     /// \brief Set the size of the view
@@ -109,7 +109,7 @@ public:
     /// \see setCenter, getCenter
     ///
     ////////////////////////////////////////////////////////////
-    void setSize(const Vector2f& size);
+    constexpr void setSize(const Vector2f& size);
 
     ////////////////////////////////////////////////////////////
     /// \brief Set the orientation of the view
@@ -121,7 +121,7 @@ public:
     /// \see getRotation
     ///
     ////////////////////////////////////////////////////////////
-    void setRotation(float angle);
+    void setRotation(const float angle);
 
     ////////////////////////////////////////////////////////////
     /// \brief Set the target viewport
@@ -138,7 +138,7 @@ public:
     /// \see getViewport
     ///
     ////////////////////////////////////////////////////////////
-    void setViewport(const FloatRect& viewport);
+    constexpr void setViewport(const FloatRect& viewport);
 
     ////////////////////////////////////////////////////////////
     /// \brief Reset the view to the given rectangle
@@ -150,7 +150,7 @@ public:
     /// \see setCenter, setSize, setRotation
     ///
     ////////////////////////////////////////////////////////////
-    void reset(const FloatRect& rectangle);
+    constexpr void reset(const FloatRect& rectangle);
 
     ////////////////////////////////////////////////////////////
     /// \brief Get the center of the view
@@ -160,7 +160,7 @@ public:
     /// \see getSize, setCenter
     ///
     ////////////////////////////////////////////////////////////
-    const Vector2f& getCenter() const;
+    constexpr const Vector2f& getCenter() const;
 
     ////////////////////////////////////////////////////////////
     /// \brief Get the size of the view
@@ -170,7 +170,7 @@ public:
     /// \see getCenter, setSize
     ///
     ////////////////////////////////////////////////////////////
-    const Vector2f& getSize() const;
+    constexpr const Vector2f& getSize() const;
 
     ////////////////////////////////////////////////////////////
     /// \brief Get the current orientation of the view
@@ -180,7 +180,7 @@ public:
     /// \see setRotation
     ///
     ////////////////////////////////////////////////////////////
-    float getRotation() const;
+    constexpr float getRotation() const;
 
     ////////////////////////////////////////////////////////////
     /// \brief Get the target viewport rectangle of the view
@@ -190,7 +190,7 @@ public:
     /// \see setViewport
     ///
     ////////////////////////////////////////////////////////////
-    const FloatRect& getViewport() const;
+    constexpr const FloatRect& getViewport() const;
 
     ////////////////////////////////////////////////////////////
     /// \brief Move the view relatively to its current position
@@ -201,7 +201,7 @@ public:
     /// \see setCenter, rotate, zoom
     ///
     ////////////////////////////////////////////////////////////
-    void move(float offsetX, float offsetY);
+    constexpr void move(const float offsetX, const float offsetY);
 
     ////////////////////////////////////////////////////////////
     /// \brief Move the view relatively to its current position
@@ -211,7 +211,7 @@ public:
     /// \see setCenter, rotate, zoom
     ///
     ////////////////////////////////////////////////////////////
-    void move(const Vector2f& offset);
+    constexpr void move(const Vector2f& offset);
 
     ////////////////////////////////////////////////////////////
     /// \brief Rotate the view relatively to its current orientation
@@ -221,7 +221,7 @@ public:
     /// \see setRotation, move, zoom
     ///
     ////////////////////////////////////////////////////////////
-    void rotate(float angle);
+    void rotate(const float angle);
 
     ////////////////////////////////////////////////////////////
     /// \brief Resize the view rectangle relatively to its current size
@@ -238,7 +238,7 @@ public:
     /// \see setSize, move, rotate
     ///
     ////////////////////////////////////////////////////////////
-    void zoom(float factor);
+    constexpr void zoom(const float factor);
 
     ////////////////////////////////////////////////////////////
     /// \brief Get the projection transform of the view
@@ -250,7 +250,7 @@ public:
     /// \see getInverseTransform
     ///
     ////////////////////////////////////////////////////////////
-    const Transform& getTransform() const;
+    constexpr const Transform& getTransform() const;
 
     ////////////////////////////////////////////////////////////
     /// \brief Get the inverse projection transform of the view
@@ -262,7 +262,7 @@ public:
     /// \see getTransform
     ///
     ////////////////////////////////////////////////////////////
-    const Transform& getInverseTransform() const;
+    constexpr const Transform& getInverseTransform() const;
 
 private:
 
@@ -271,16 +271,17 @@ private:
     ////////////////////////////////////////////////////////////
     Vector2f          m_center;              //!< Center of the view, in scene coordinates
     Vector2f          m_size;                //!< Size of the view, in scene coordinates
-    float             m_rotation;            //!< Angle of rotation of the view rectangle, in degrees
-    FloatRect         m_viewport;            //!< Viewport rectangle, expressed as a factor of the render-target's size
+    float             m_rotation = 0.0f;            //!< Angle of rotation of the view rectangle, in degrees
+    FloatRect         m_viewport { 0.0f, 0.0f, 1.0f, 1.0f };            //!< Viewport rectangle, expressed as a factor of the render-target's size
     mutable Transform m_transform;           //!< Precomputed projection transform corresponding to the view
     mutable Transform m_inverseTransform;    //!< Precomputed inverse projection transform corresponding to the view
-    mutable bool      m_transformUpdated;    //!< Internal state telling if the transform needs to be updated
-    mutable bool      m_invTransformUpdated; //!< Internal state telling if the inverse transform needs to be updated
+    mutable bool      m_transformUpdated = false;    //!< Internal state telling if the transform needs to be updated
+    mutable bool      m_invTransformUpdated = false; //!< Internal state telling if the inverse transform needs to be updated
 };
 
 } // namespace sf
 
+#include <SFML/Graphics/View.inl>
 
 #endif // SFML_VIEW_HPP
 
