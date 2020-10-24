@@ -43,8 +43,10 @@ namespace priv
 /// \brief Win32 implementation of Cursor
 ///
 ////////////////////////////////////////////////////////////
-class CursorImpl : NonCopyable
+class CursorImpl
 {
+    SFML_DISALLOW_COPY_MOVE(CursorImpl);
+
 public:
 
     ////////////////////////////////////////////////////////////

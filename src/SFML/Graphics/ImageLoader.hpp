@@ -44,8 +44,10 @@ namespace priv
 /// \brief Load/save image files
 ///
 ////////////////////////////////////////////////////////////
-class ImageLoader : NonCopyable
+class ImageLoader
 {
+    SFML_DISALLOW_COPY_MOVE(ImageLoader);
+
 public:
 
     ////////////////////////////////////////////////////////////

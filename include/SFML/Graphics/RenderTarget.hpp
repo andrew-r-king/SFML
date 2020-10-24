@@ -49,8 +49,9 @@ class VertexBuffer;
 /// \brief Base class for all render targets (window, texture, ...)
 ///
 ////////////////////////////////////////////////////////////
-class SFML_GRAPHICS_API RenderTarget : NonCopyable
+class SFML_GRAPHICS_API RenderTarget
 {
+    SFML_DISALLOW_COPY_MOVE(RenderTarget);
 public:
 
     ////////////////////////////////////////////////////////////

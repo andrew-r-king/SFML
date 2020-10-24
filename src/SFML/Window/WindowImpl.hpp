@@ -54,8 +54,10 @@ namespace priv
 /// \brief Abstract base class for OS-specific window implementation
 ///
 ////////////////////////////////////////////////////////////
-class WindowImpl : NonCopyable
+class WindowImpl
 {
+    SFML_DISALLOW_COPY_MOVE(WindowImpl);
+
 public:
 
     ////////////////////////////////////////////////////////////

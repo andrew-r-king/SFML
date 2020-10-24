@@ -44,8 +44,10 @@ class SoundFileReader;
 /// \brief Provide read access to sound files
 ///
 ////////////////////////////////////////////////////////////
-class SFML_AUDIO_API InputSoundFile : NonCopyable
+class SFML_AUDIO_API InputSoundFile
 {
+    SFML_DISALLOW_COPY_MOVE(InputSoundFile);
+
 public:
 
     ////////////////////////////////////////////////////////////

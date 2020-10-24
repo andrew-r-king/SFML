@@ -52,8 +52,10 @@ namespace sf
 /// \brief Implementation of input stream based on a file
 ///
 ////////////////////////////////////////////////////////////
-class SFML_SYSTEM_API FileInputStream : public InputStream, NonCopyable
+class SFML_SYSTEM_API FileInputStream : public InputStream
 {
+    SFML_DISALLOW_COPY_MOVE(FileInputStream);
+
 public:
     ////////////////////////////////////////////////////////////
     /// \brief Default constructor

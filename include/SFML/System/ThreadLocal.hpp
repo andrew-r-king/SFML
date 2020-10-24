@@ -44,8 +44,10 @@ namespace priv
 /// \brief Defines variables with thread-local storage
 ///
 ////////////////////////////////////////////////////////////
-class SFML_SYSTEM_API ThreadLocal : NonCopyable
+class SFML_SYSTEM_API ThreadLocal
 {
+    SFML_DISALLOW_COPY_MOVE(ThreadLocal);
+
 public:
 
     ////////////////////////////////////////////////////////////

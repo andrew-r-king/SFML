@@ -177,8 +177,11 @@ Shader::CurrentTextureType Shader::CurrentTexture;
 
 
 ////////////////////////////////////////////////////////////
-struct Shader::UniformBinder : private NonCopyable
+class Shader::UniformBinder
 {
+    SFML_DISALLOW_COPY_MOVE(UniformBinder);
+
+public:
     ////////////////////////////////////////////////////////////
     /// \brief Constructor: set up state before uniform is set
     ///

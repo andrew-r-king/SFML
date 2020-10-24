@@ -53,8 +53,10 @@ class Event;
 /// \brief Window that serves as a base for other windows
 ///
 ////////////////////////////////////////////////////////////
-class SFML_WINDOW_API WindowBase : NonCopyable
+class SFML_WINDOW_API WindowBase
 {
+    SFML_DISALLOW_COPY_MOVE(WindowBase);
+
 public:
 
     ////////////////////////////////////////////////////////////

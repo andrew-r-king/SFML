@@ -56,8 +56,10 @@ namespace priv
 /// \brief Mac OS X implementation of Cursor
 ///
 ////////////////////////////////////////////////////////////
-class CursorImpl : NonCopyable
+class CursorImpl
 {
+    SFML_DISALLOW_COPY_MOVE(CursorImpl);
+
 public:
 
     ////////////////////////////////////////////////////////////

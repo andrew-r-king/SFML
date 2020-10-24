@@ -41,8 +41,10 @@ namespace priv
 /// \brief Global sensor manager
 ///
 ////////////////////////////////////////////////////////////
-class SensorManager : NonCopyable
+class SensorManager
 {
+    SFML_DISALLOW_COPY_MOVE(SensorManager);
+
 public:
 
     ////////////////////////////////////////////////////////////

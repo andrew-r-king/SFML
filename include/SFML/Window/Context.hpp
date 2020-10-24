@@ -47,8 +47,10 @@ typedef void (*GlFunctionPointer)();
 /// \brief Class holding a valid drawing context
 ///
 ////////////////////////////////////////////////////////////
-class SFML_WINDOW_API Context : GlResource, NonCopyable
+class SFML_WINDOW_API Context : GlResource
 {
+    SFML_DISALLOW_COPY_MOVE(Context);
+
 public:
 
     ////////////////////////////////////////////////////////////

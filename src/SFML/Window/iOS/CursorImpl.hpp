@@ -44,8 +44,10 @@ namespace priv
 /// This is a typical "not supported" implementation.
 ///
 ////////////////////////////////////////////////////////////
-class CursorImpl : NonCopyable
+class CursorImpl
 {
+    SFML_DISALLOW_COPY_MOVE(CursorImpl);
+
 public:
 
     ////////////////////////////////////////////////////////////

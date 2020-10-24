@@ -43,8 +43,10 @@ namespace sf
 /// \brief A HTTP client
 ///
 ////////////////////////////////////////////////////////////
-class SFML_NETWORK_API Http : NonCopyable
+class SFML_NETWORK_API Http
 {
+    SFML_DISALLOW_COPY_MOVE(Http);
+
 public:
 
     ////////////////////////////////////////////////////////////

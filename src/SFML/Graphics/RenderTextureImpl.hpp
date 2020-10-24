@@ -42,9 +42,12 @@ namespace priv
 /// \brief Abstract base class for render-texture implementations
 ///
 ////////////////////////////////////////////////////////////
-class RenderTextureImpl : NonCopyable
+class RenderTextureImpl
 {
+    SFML_DISALLOW_COPY_MOVE(RenderTextureImpl);
+
 public:
+    RenderTextureImpl() = default;
 
     ////////////////////////////////////////////////////////////
     /// \brief Destructor

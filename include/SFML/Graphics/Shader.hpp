@@ -49,8 +49,10 @@ class Transform;
 /// \brief Shader class (vertex, geometry and fragment)
 ///
 ////////////////////////////////////////////////////////////
-class SFML_GRAPHICS_API Shader : GlResource, NonCopyable
+class SFML_GRAPHICS_API Shader : GlResource
 {
+    SFML_DISALLOW_COPY_MOVE(Shader);
+
 public:
 
     ////////////////////////////////////////////////////////////

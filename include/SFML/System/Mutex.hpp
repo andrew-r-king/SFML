@@ -44,8 +44,10 @@ namespace priv
 ///        from multiple threads
 ///
 ////////////////////////////////////////////////////////////
-class SFML_SYSTEM_API Mutex : NonCopyable
+class SFML_SYSTEM_API Mutex
 {
+    SFML_DISALLOW_COPY_MOVE(Mutex);
+
 public:
 
     ////////////////////////////////////////////////////////////

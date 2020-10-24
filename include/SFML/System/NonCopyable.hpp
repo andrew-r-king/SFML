@@ -31,6 +31,20 @@
 #include <SFML/System/Export.hpp>
 
 
+#define SFML_DISALLOW_COPY_MOVE(ClassName)         \
+	ClassName(const ClassName&) = delete;            \
+	ClassName(ClassName&&) = delete;                 \
+	ClassName& operator=(const ClassName&) = delete; \
+	ClassName& operator=(ClassName&&) noexcept = delete
+
+#define SFML_DISALLOW_COPY(ClassName)   \
+	ClassName(const ClassName&) = delete; \
+	ClassName& operator=(const ClassName&) = delete
+
+#define SFML_DISALLOW_MOVE(ClassName) \
+	ClassName(ClassName&&) = delete;    \
+	ClassName& operator=(ClassName&&) noexcept = delete
+
 namespace sf
 {
 ////////////////////////////////////////////////////////////
@@ -51,7 +65,7 @@ protected:
     ///
     ////////////////////////////////////////////////////////////
     NonCopyable() {}
-    
+
     ////////////////////////////////////////////////////////////
     /// \brief Default destructor
     ///

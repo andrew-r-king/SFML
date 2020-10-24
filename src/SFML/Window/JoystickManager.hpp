@@ -41,8 +41,10 @@ namespace priv
 /// \brief Global joystick manager
 ///
 ////////////////////////////////////////////////////////////
-class JoystickManager : NonCopyable
+class JoystickManager
 {
+    SFML_DISALLOW_COPY_MOVE(JoystickManager);
+
 public:
 
     ////////////////////////////////////////////////////////////

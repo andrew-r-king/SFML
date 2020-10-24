@@ -40,8 +40,10 @@ class Mutex;
 /// \brief Automatic wrapper for locking and unlocking mutexes
 ///
 ////////////////////////////////////////////////////////////
-class SFML_SYSTEM_API Lock : NonCopyable
+class SFML_SYSTEM_API Lock
 {
+    SFML_DISALLOW_COPY_MOVE(Lock);
+
 public:
 
     ////////////////////////////////////////////////////////////

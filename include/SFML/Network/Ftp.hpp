@@ -44,8 +44,10 @@ class IpAddress;
 /// \brief A FTP client
 ///
 ////////////////////////////////////////////////////////////
-class SFML_NETWORK_API Ftp : NonCopyable
+class SFML_NETWORK_API Ftp
 {
+    SFML_DISALLOW_COPY_MOVE(Ftp);
+
 public:
 
     ////////////////////////////////////////////////////////////

@@ -45,8 +45,10 @@ class WindowImpl;
 /// \brief Abstract class representing an OpenGL context
 ///
 ////////////////////////////////////////////////////////////
-class GlContext : NonCopyable
+class GlContext
 {
+    SFML_DISALLOW_COPY_MOVE(GlContext);
+
 public:
 
     ////////////////////////////////////////////////////////////

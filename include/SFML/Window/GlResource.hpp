@@ -76,8 +76,10 @@ protected:
     /// \brief RAII helper class to temporarily lock an available context for use
     ///
     ////////////////////////////////////////////////////////////
-    class SFML_WINDOW_API TransientContextLock : NonCopyable
+    class SFML_WINDOW_API TransientContextLock
     {
+        SFML_DISALLOW_COPY_MOVE(TransientContextLock);
+
     public:
         ////////////////////////////////////////////////////////////
         /// \brief Default constructor

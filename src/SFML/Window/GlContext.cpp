@@ -178,8 +178,11 @@ namespace
 
     // This structure contains all the state necessary to
     // track TransientContext usage
-    struct TransientContext : private sf::NonCopyable
+    class TransientContext
     {
+        SFML_DISALLOW_COPY_MOVE(TransientContext);
+
+    public:
         ////////////////////////////////////////////////////////////
         /// \brief Constructor
         ///
