@@ -68,7 +68,7 @@ public:
     ///
     ////////////////////////////////////////////////////////////
     template <typename U>
-    constexpr explicit Vector3(const Vector3<U>& vector);
+    constexpr Vector3(const Vector3<U>& vector);
 
     ////////////////////////////////////////////////////////////
     // Member data
