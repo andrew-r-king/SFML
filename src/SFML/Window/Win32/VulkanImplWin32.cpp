@@ -193,6 +193,7 @@ const std::vector<const char*>& VulkanImplWin32::getGraphicsRequiredInstanceExte
 
 
 ////////////////////////////////////////////////////////////
+#ifndef SFML_CUSTOM_WINDOW
 bool VulkanImplWin32::createVulkanSurface(const VkInstance& instance, WindowHandle windowHandle, VkSurfaceKHR& surface, const VkAllocationCallbacks* allocator)
 {
     if (!isAvailable())
@@ -213,7 +214,7 @@ bool VulkanImplWin32::createVulkanSurface(const VkInstance& instance, WindowHand
 
     return (vkCreateWin32SurfaceKHR(instance, &surfaceCreateInfo, allocator, &surface) == VK_SUCCESS);
 }
-
+#endif
 } // namespace priv
 
 } // namespace sf

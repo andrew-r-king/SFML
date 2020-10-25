@@ -419,7 +419,7 @@ public:
     /// \see getAttenuation, setMinDistance
     ///
     ////////////////////////////////////////////////////////////
-    static void setSourceAttenuation(const unsigned int sourceId, float attenuation);
+    static void setSourceAttenuation(const unsigned int source, float attenuation);
 
 protected:
 

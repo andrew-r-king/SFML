@@ -73,6 +73,11 @@
 #endif
 
 
+#ifdef SFML_CUSTOM_WINDOW
+    #include <cassert>
+#endif
+
+
 namespace sf
 {
 namespace priv
@@ -80,20 +85,31 @@ namespace priv
 ////////////////////////////////////////////////////////////
 WindowImpl* WindowImpl::create(VideoMode mode, const String& title, Uint32 style, const ContextSettings& settings)
 {
+#ifdef SFML_CUSTOM_WINDOW
+    assert(false && "WindowImpl::create cannot be called in combination with SFML_CUSTOM_WINDOW build flag");
+    return nullptr;
+#else
     return new WindowImplType(mode, title, style, settings);
+#endif
 }
 
 
 ////////////////////////////////////////////////////////////
 WindowImpl* WindowImpl::create(WindowHandle handle)
 {
+#ifdef SFML_CUSTOM_WINDOW
+    assert(false && "WindowImpl::create cannot be called in combination with SFML_CUSTOM_WINDOW build flag");
+    return nullptr;
+#else
     return new WindowImplType(handle);
+#endif
 }
 
 
 ////////////////////////////////////////////////////////////
-WindowImpl::WindowImpl() :
-m_joystickThreshold(0.1f)
+#ifndef SFML_CUSTOM_WINDOW
+WindowImpl::WindowImpl()
+    : m_joystickThreshold(0.1f)
 {
     // Get the initial joystick states
     JoystickManager::getInstance().update();
@@ -107,25 +123,24 @@ m_joystickThreshold(0.1f)
     for (unsigned int i = 0; i < Sensor::Count; ++i)
         m_sensorValue[i] = Vector3f(0, 0, 0);
 }
-
-
-////////////////////////////////////////////////////////////
-WindowImpl::~WindowImpl()
-{
-    // Nothing to do
-}
+#endif
 
 
 ////////////////////////////////////////////////////////////
 void WindowImpl::setJoystickThreshold(float threshold)
 {
+#ifndef SFML_CUSTOM_WINDOW
     m_joystickThreshold = threshold;
+#else
+    static_cast<void>(threshold);
+#endif
 }
 
 
 ////////////////////////////////////////////////////////////
 bool WindowImpl::popEvent(Event& event, bool block)
 {
+#ifndef SFML_CUSTOM_WINDOW
     // If the event queue is empty, let's first check if new events are available from the OS
     if (m_events.empty())
     {
@@ -158,6 +173,10 @@ bool WindowImpl::popEvent(Event& event, bool block)
 
         return true;
     }
+#else
+    static_cast<void>(event);
+    static_cast<void>(block);
+#endif
 
     return false;
 }
@@ -166,13 +185,18 @@ bool WindowImpl::popEvent(Event& event, bool block)
 ////////////////////////////////////////////////////////////
 void WindowImpl::pushEvent(const Event& event)
 {
+#ifndef SFML_CUSTOM_WINDOW
     m_events.push(event);
+#else
+    static_cast<void>(event);
+#endif
 }
 
 
 ////////////////////////////////////////////////////////////
 void WindowImpl::processJoystickEvents()
 {
+#ifndef SFML_CUSTOM_WINDOW
     // First update the global joystick states
     JoystickManager::getInstance().update();
 
@@ -238,12 +262,14 @@ void WindowImpl::processJoystickEvents()
             }
         }
     }
+#endif
 }
 
 
 ////////////////////////////////////////////////////////////
 void WindowImpl::processSensorEvents()
 {
+#ifndef SFML_CUSTOM_WINDOW
     // First update the sensor states
     SensorManager::getInstance().update();
 
@@ -271,10 +297,12 @@ void WindowImpl::processSensorEvents()
             }
         }
     }
+#endif
 }
 
 
 ////////////////////////////////////////////////////////////
+#ifndef SFML_CUSTOM_WINDOW
 bool WindowImpl::createVulkanSurface(const VkInstance& instance, VkSurfaceKHR& surface, const VkAllocationCallbacks* allocator)
 {
 #if defined(SFML_VULKAN_IMPLEMENTATION_NOT_AVAILABLE)
@@ -287,6 +315,7 @@ bool WindowImpl::createVulkanSurface(const VkInstance& instance, VkSurfaceKHR& s
 
 #endif
 }
+#endif
 
 } // namespace priv
 

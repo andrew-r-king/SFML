@@ -32,12 +32,16 @@
 #include <SFML/System/NonCopyable.hpp>
 #include <SFML/System/String.hpp>
 #include <SFML/Window/ContextSettings.hpp>
-#include <SFML/Window/CursorImpl.hpp>
+#include <SFML/Window/Cursor.hpp>
 #include <SFML/Window/Event.hpp>
 #include <SFML/Window/Joystick.hpp>
-#include <SFML/Window/JoystickImpl.hpp>
+#ifndef SFML_CUSTOM_WINDOW
+    #include <SFML/Window/JoystickImpl.hpp>
+#endif
 #include <SFML/Window/Sensor.hpp>
-#include <SFML/Window/SensorImpl.hpp>
+#ifndef SFML_CUSTOM_WINDOW
+    #include <SFML/Window/SensorImpl.hpp>
+#endif
 #include <SFML/Window/VideoMode.hpp>
 #include <SFML/Window/WindowHandle.hpp>
 #include <SFML/Window/Window.hpp>
@@ -89,7 +93,7 @@ public:
     /// \brief Destructor
     ///
     ////////////////////////////////////////////////////////////
-    virtual ~WindowImpl();
+    virtual ~WindowImpl() = default;
 
     ////////////////////////////////////////////////////////////
     /// \brief Change the joystick threshold, i.e. the value below which
@@ -204,7 +208,7 @@ public:
     /// \param cursor Native system cursor type to display
     ///
     ////////////////////////////////////////////////////////////
-    virtual void setMouseCursor(const CursorImpl& cursor) = 0;
+    virtual void setMouseCursor(const Cursor& cursor) = 0;
 
     ////////////////////////////////////////////////////////////
     /// \brief Enable or disable automatic key-repeat
@@ -229,6 +233,7 @@ public:
     ////////////////////////////////////////////////////////////
     virtual bool hasFocus() const = 0;
 
+#ifndef SFML_CUSTOM_WINDOW
     ////////////////////////////////////////////////////////////
     /// \brief Create a Vulkan rendering surface
     ///
@@ -240,6 +245,7 @@ public:
     ///
     ////////////////////////////////////////////////////////////
     bool createVulkanSurface(const VkInstance& instance, VkSurfaceKHR& surface, const VkAllocationCallbacks* allocator);
+#endif
 
 protected:
 
@@ -247,7 +253,11 @@ protected:
     /// \brief Default constructor
     ///
     ////////////////////////////////////////////////////////////
+#ifdef SFML_CUSTOM_WINDOW
+    WindowImpl() = default;
+#else
     WindowImpl();
+#endif
 
     ////////////////////////////////////////////////////////////
     /// \brief Push a new event into the event queue
@@ -284,11 +294,13 @@ private:
     ////////////////////////////////////////////////////////////
     // Member data
     ////////////////////////////////////////////////////////////
+#ifndef SFML_CUSTOM_WINDOW
     std::queue<Event> m_events;                                              //!< Queue of available events
     JoystickState     m_joystickStates[Joystick::Count];                     //!< Previous state of the joysticks
     Vector3f          m_sensorValue[Sensor::Count];                          //!< Previous value of the sensors
     float             m_joystickThreshold;                                   //!< Joystick threshold (minimum motion for "move" event to be generated)
     float             m_previousAxes[Joystick::Count][Joystick::AxisCount];  //!< Position of each axis last time a move event triggered, in range [-100, 100]
+#endif
 };
 
 } // namespace priv

@@ -255,9 +255,9 @@ void SoundSource::setSourceMinDistance(const unsigned int source, float distance
 
 
 ////////////////////////////////////////////////////////////
-void SoundSource::setSourceAttenuation(const unsigned int sourceId, float attenuation)
+void SoundSource::setSourceAttenuation(const unsigned int source, float attenuation)
 {
-    alCheck(alSourcef(sourceId, AL_ROLLOFF_FACTOR, attenuation));
+    alCheck(alSourcef(source, AL_ROLLOFF_FACTOR, attenuation));
 }
 
 } // namespace sf

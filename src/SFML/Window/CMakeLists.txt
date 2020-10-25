@@ -51,7 +51,7 @@ set(SRC
     ${INCROOT}/WindowBase.hpp
     ${INCROOT}/WindowHandle.hpp
     ${SRCROOT}/WindowImpl.cpp
-    ${SRCROOT}/WindowImpl.hpp
+    ${INCROOT}/WindowImpl.hpp
     ${INCROOT}/WindowStyle.hpp
 )
 source_group("" FILES ${SRC})
@@ -261,7 +261,7 @@ if(SFML_OS_IOS)
     target_link_libraries(sfml-window PRIVATE GLES)
 elseif(SFML_OS_ANDROID)
     sfml_find_package(GLES INCLUDE "GLES_INCLUDE_DIR" LINK "GLES_LIBRARY")
-    
+
     sfml_find_package(EGL INCLUDE "EGL_INCLUDE_DIR" LINK "EGL_LIBRARY")
     target_link_libraries(sfml-window PRIVATE EGL)
     target_link_libraries(sfml-window PRIVATE GLES)

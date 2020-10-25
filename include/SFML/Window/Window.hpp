@@ -138,6 +138,25 @@ public:
     virtual void create(VideoMode mode, const String& title, Uint32 style, const ContextSettings& settings);
 
     ////////////////////////////////////////////////////////////
+    /// \brief Create (or recreate) the window
+    ///
+    /// If the window was already created, it closes it first.
+    /// If \a style contains Style::Fullscreen, then \a mode
+    /// must be a valid video mode.
+    ///
+    /// The fourth parameter is an optional structure specifying
+    /// advanced OpenGL context settings such as antialiasing,
+    /// depth-buffer bits, etc.
+    ///
+    /// \param mode     Video mode to use (defines the width, height and depth of the rendering area of the window)
+    /// \param isFullscreen true if fullscreen
+    /// \param mode     Video mode to use (defines the width, height and depth of the rendering area of the window)
+    /// \param settings Additional settings for the underlying OpenGL context
+    ///
+    ////////////////////////////////////////////////////////////
+    virtual void create(priv::WindowImpl* impl, bool isFullscreen, VideoMode mode, const ContextSettings& settings);
+
+    ////////////////////////////////////////////////////////////
     /// \brief Create (or recreate) the window from an existing control
     ///
     /// Use this function if you want to create an OpenGL
