@@ -122,7 +122,7 @@
 ////////////////////////////////////////////////////////////
 #if !defined(SFML_STATIC)
 
-    #if defined(SFML_SYSTEM_WINDOWS)
+    #if defined(SFML_SYSTEM_WINDOWS) && !defined(SFML_MINGW)
 
         // Windows compilers need specific (and different) keywords for export and import
         #define SFML_API_EXPORT __declspec(dllexport)

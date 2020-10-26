@@ -35,11 +35,11 @@ namespace Math
 {
 #if __cplusplus >= 202002L
 	template <typename T>
-	static constexpr auto pi_v = std::numbers::pi_v<T>;
+	constexpr const auto pi_v = std::numbers::pi_v<T>;
 
-	static constexpr auto pi = std::numbers::pi;
+	constexpr const auto pi = std::numbers::pi;
 #else
-	static constexpr float pi = 3.141592654f;
+	constexpr const float pi = 3.141592654f;
 #endif
 }
 }
