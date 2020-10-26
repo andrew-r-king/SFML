@@ -594,7 +594,9 @@ void WglContext::createSurface(HWND window, unsigned int bitsPerPixel)
     m_deviceContext = GetDC(window);
 
     // Set the pixel format of the device context
+#ifndef SFML_CUSTOM_WINDOW
     setDevicePixelFormat(bitsPerPixel);
+#endif
 
     // Update context settings from the selected pixel format
     updateSettingsFromPixelFormat();
