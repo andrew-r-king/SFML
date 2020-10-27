@@ -133,8 +133,8 @@ constexpr Vector2<T>& operator-=(Vector2<T>& left, const Vector2<U>& right) noex
 template <typename T, typename U>
 constexpr Vector2<T> operator+(const Vector2<T>& left, const Vector2<U>& right) noexcept;
 
-template <typename T, typename U>
-constexpr Vector2<T>& operator+(Vector2<T>& left, const U right) noexcept;
+template <typename T>
+constexpr Vector2<T>& operator+(Vector2<T>& left, const float right) noexcept;
 
 ////////////////////////////////////////////////////////////
 /// \relates Vector2
@@ -149,8 +149,8 @@ constexpr Vector2<T>& operator+(Vector2<T>& left, const U right) noexcept;
 template <typename T, typename U>
 constexpr Vector2<T> operator-(const Vector2<T>& left, const Vector2<U>& right) noexcept;
 
-template <typename T, typename U>
-constexpr Vector2<T>& operator-(Vector2<T>& left, const U right) noexcept;
+template <typename T>
+constexpr Vector2<T>& operator-(Vector2<T>& left, const float right) noexcept;
 
 ////////////////////////////////////////////////////////////
 /// \relates Vector2

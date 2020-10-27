@@ -87,8 +87,8 @@ constexpr Vector3<T> operator+(const Vector3<T>& left, const Vector3<U>& right) 
 }
 
 ////////////////////////////////////////////////////////////
-template <typename T, typename U>
-constexpr Vector3<T>& operator+(Vector3<T>& left, const U right) noexcept
+template <typename T>
+constexpr Vector3<T>& operator+(Vector3<T>& left, const float right) noexcept
 {
 	left.x += static_cast<T>(right);
 	left.y += static_cast<T>(right);
@@ -108,8 +108,8 @@ constexpr Vector3<T> operator-(const Vector3<T>& left, const Vector3<U>& right) 
 
 
 ////////////////////////////////////////////////////////////
-template <typename T, typename U>
-constexpr Vector3<T>& operator-(Vector3<T>& left, const U right) noexcept
+template <typename T>
+constexpr Vector3<T>& operator-(Vector3<T>& left, const float right) noexcept
 {
 	left.x -= static_cast<T>(right);
 	left.y -= static_cast<T>(right);
