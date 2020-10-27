@@ -182,6 +182,14 @@ constexpr Transform& Transform::translate(const Vector2f& offset) noexcept
     return translate(offset.x, offset.y);
 }
 
+constexpr Transform& Transform::floorTranslation() noexcept
+{
+    m_matrix[12] = static_cast<float>(static_cast<int>(m_matrix[12]));
+    m_matrix[13] = static_cast<float>(static_cast<int>(m_matrix[13]));
+
+    return *this;
+}
+
 
 ////////////////////////////////////////////////////////////
 constexpr Transform& Transform::rotate(float angle)

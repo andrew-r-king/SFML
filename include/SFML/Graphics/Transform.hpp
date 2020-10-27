@@ -208,6 +208,27 @@ public:
     constexpr Transform& translate(const Vector2f& offset) noexcept;
 
     ////////////////////////////////////////////////////////////
+    /// \brief Floor the translation position to the nearest 0
+    ///
+    /// Useful for pixelated graphics that need to store a transform,
+    /// but also need to draw to the nearest whole pixel value,
+    /// when the drawing canvas could be scaled up
+    ///
+    /// This function returns a reference to *this, so that calls
+    /// can be chained.
+    /// \code
+    /// sf::Transform transform;
+    /// transform.translate(sf::Vector2f(100, 200)).floorTranslation();
+    /// \endcode
+    ///
+    /// \return Reference to *this
+    ///
+    /// \see translate
+    ///
+    ////////////////////////////////////////////////////////////
+    constexpr Transform& floorTranslation() noexcept;
+
+    ////////////////////////////////////////////////////////////
     /// \brief Combine the current transform with a rotation
     ///
     /// This function returns a reference to *this, so that calls
