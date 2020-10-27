@@ -135,6 +135,9 @@ constexpr Vector3<T>& operator-=(Vector3<T>& left, const Vector3<U>& right) noex
 template <typename T, typename U>
 constexpr Vector3<T> operator+(const Vector3<T>& left, const Vector3<U>& right) noexcept;
 
+template <typename T, typename U>
+constexpr Vector3<T>& operator+(Vector3<T>& left, const U right) noexcept;
+
 ////////////////////////////////////////////////////////////
 /// \relates Vector3
 /// \brief Overload of binary operator -
@@ -147,6 +150,9 @@ constexpr Vector3<T> operator+(const Vector3<T>& left, const Vector3<U>& right) 
 ////////////////////////////////////////////////////////////
 template <typename T, typename U>
 constexpr Vector3<T> operator-(const Vector3<T>& left, const Vector3<U>& right) noexcept;
+
+template <typename T, typename U>
+constexpr Vector3<T>& operator-(Vector3<T>& left, const U right) noexcept;
 
 ////////////////////////////////////////////////////////////
 /// \relates Vector3
