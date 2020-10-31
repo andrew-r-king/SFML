@@ -157,6 +157,19 @@ constexpr Vector2<T>& operator-(Vector2<T>& left, const float right) noexcept;
 /// \brief Overload of binary operator *
 ///
 /// \param left  Left operand (a vector)
+/// \param right Right operand (a vector)
+///
+/// \return Memberwise multiplication by \a right
+///
+////////////////////////////////////////////////////////////
+template <typename T, typename U>
+constexpr Vector2<T> operator*(const Vector2<T>& left, const Vector2<U>& right) noexcept;
+
+////////////////////////////////////////////////////////////
+/// \relates Vector2
+/// \brief Overload of binary operator *
+///
+/// \param left  Left operand (a vector)
 /// \param right Right operand (a scalar value)
 ///
 /// \return Memberwise multiplication by \a right
@@ -193,6 +206,19 @@ constexpr Vector2<T> operator*(U left, const Vector2<T>& right) noexcept; // TOD
 ////////////////////////////////////////////////////////////
 template <typename T, typename U>
 constexpr Vector2<T>& operator*=(Vector2<T>& left, U right) noexcept;
+
+////////////////////////////////////////////////////////////
+/// \relates Vector2
+/// \brief Overload of binary operator /
+///
+/// \param left  Left operand (a vector)
+/// \param right Right operand (a vector)
+///
+/// \return Memberwise division by \a right
+///
+////////////////////////////////////////////////////////////
+template <typename T, typename U>
+constexpr Vector2<T> operator/(const Vector2<T>& left, const Vector2<U>& right) noexcept;
 
 ////////////////////////////////////////////////////////////
 /// \relates Vector2

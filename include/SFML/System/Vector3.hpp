@@ -159,6 +159,19 @@ constexpr Vector3<T>& operator-(Vector3<T>& left, const float right) noexcept;
 /// \brief Overload of binary operator *
 ///
 /// \param left  Left operand (a vector)
+/// \param right Right operand (a vector)
+///
+/// \return Memberwise multiplication by \a right
+///
+////////////////////////////////////////////////////////////
+template <typename T, typename U>
+constexpr Vector3<T> operator*(const Vector3<T>& left, const Vector3<U>& right) noexcept;
+
+////////////////////////////////////////////////////////////
+/// \relates Vector3
+/// \brief Overload of binary operator *
+///
+/// \param left  Left operand (a vector)
 /// \param right Right operand (a scalar value)
 ///
 /// \return Memberwise multiplication by \a right
@@ -195,6 +208,19 @@ constexpr Vector3<T> operator*(U left, const Vector3<T>& right) noexcept;
 ////////////////////////////////////////////////////////////
 template <typename T, typename U>
 constexpr Vector3<T>& operator*=(Vector3<T>& left, U right) noexcept;
+
+////////////////////////////////////////////////////////////
+/// \relates Vector3
+/// \brief Overload of binary operator /
+///
+/// \param left  Left operand (a vector)
+/// \param right Right operand (a vector)
+///
+/// \return Memberwise division by \a right
+///
+////////////////////////////////////////////////////////////
+template <typename T, typename U>
+constexpr Vector3<T> operator/(const Vector3<T>& left, const Vector3<U>& right) noexcept;
 
 ////////////////////////////////////////////////////////////
 /// \relates Vector3
