@@ -74,5 +74,6 @@ For SDL2, also make sure the window uses OpenGL exclusively, and everything init
 The setup is similar for GLFW, but you'll need to create the glfw callbacks that statically call your own event dispatcher or something (consider entt::dispatcher).
 
 ### Other:
-- Attempts to add some modern C++ to SFML. Trivial template classes like `sf::Rect`, `sf::Color`, & `sf::Vector` are constexpr. `sf::Time` is constexpr as well and uses chrono
 - It's C++20 (tested on GCC 10.2) so that `sf::Transform` and a lot of `sf::View` could also be constexpr, but that was probably overkill, and this may get scaled back to C++17 for compatibility...
+- Attempts to add some modern C++ to SFML. Trivial template classes like `sf::Rect`, `sf::Color`, & `sf::Vector` are constexpr. `sf::Time` is constexpr as well and uses chrono
+- Moved static colors (sf::Color::Black, sf::Color::Blue, etc) to `sf::Colors` namespace to get rid of extra noise while debugging color changes
