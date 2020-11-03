@@ -46,27 +46,27 @@ Exposes `sf::priv::WindowImpl` so that one could use a separate library for wind
 // GameWindow extends sf::RenderWindow
 void GameWindow::createWindowImpl(const bool inFullscreen, const sf::Uint32 inStyle)
 {
-	if (m_windowImpl != nullptr)
-		return;
+    if (m_windowImpl != nullptr)
+        return;
 
-	sf::VideoMode mode;
-	mode.width = m_windowResolution.x;
-	mode.height = m_windowResolution.y;
+    sf::VideoMode mode;
+    mode.width = m_windowResolution.x;
+    mode.height = m_windowResolution.y;
 
-	m_windowImpl = new SDLWindowImpl(mode, m_title, inStyle, m_contextSettings);
+    m_windowImpl = new SDLWindowImpl(mode, m_title, inStyle, m_contextSettings);
 	
-  // Use SDL_WINDOW_OPENGL flag w/ SDL_GL_SetAttribute, 
-  // but do not create a SDL_Renderer (done by SFML)
+    // Use SDL_WINDOW_OPENGL flag w/ SDL_GL_SetAttribute, 
+    // but do not create a SDL_Renderer (done by SFML)
 
-  // m_windowImpl is injected here, so it will get deleted by SFML. Keeping a 
-  // weak pointer is useful for calling implementation-specific things that 
-  // aren't required by sf::priv::WindowImpl, like "setFullscreen". For example, 
-  // GameWindow shouldn't make any calls directly to SDL2
-  this->create(m_windowImpl, inFullscreen, mode, m_contextSettings);
+    // m_windowImpl is injected here, so it will get deleted by SFML. Keeping a 
+    // weak pointer is useful for calling implementation-specific things that 
+    // aren't required by sf::priv::WindowImpl, like "setFullscreen". For example, 
+    // GameWindow shouldn't make any calls directly to SDL2
+    this->create(m_windowImpl, inFullscreen, mode, m_contextSettings);
 
-  // This just calls SDL_GL_GetAttribute() to make sure the context is what 
-  // is expected, but granted, you could do this however you like
-	m_windowImpl->checkContext(); 
+    // This just calls SDL_GL_GetAttribute() to make sure the context is what 
+    // is expected, but granted, you could do this however you like
+    m_windowImpl->checkContext(); 
 }
 ```
 For SDL2, also make sure the window uses OpenGL exclusively, and everything initializes & destructs correctly. Write out your event handling somewhere (especially for SDL_WINDOWEVENT_CLOSE), otherwise you won't be able to do much. Take advantage of SDL_GameController and SDL_Haptic of course! That and dual-monitor support / more robust window handling are the primary reasons for doing something like this.
