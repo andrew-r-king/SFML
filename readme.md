@@ -75,5 +75,6 @@ The setup is similar for GLFW, but you'll need to create the glfw callbacks that
 
 ### Other:
 - It's C++20 (tested on GCC 10.2) so that `sf::Transform` and a lot of `sf::View` could also be constexpr, but that was probably overkill, and this may get scaled back to C++17 for compatibility...
-- Attempts to add some modern C++ to SFML. Trivial template classes like `sf::Rect`, `sf::Color`, & `sf::Vector` are constexpr. `sf::Time` is constexpr as well and uses chrono
+- Attempts to add some modern C++ to SFML. Trivial template classes like `sf::Rect`, `sf::Color`, `sf::Vector2` & `sf::Vector3` are constexpr. `sf::Time` is constexpr as well and uses chrono
 - Moved static colors (sf::Color::Black, sf::Color::Blue, etc) to `sf::Colors` namespace to get rid of extra noise while debugging color changes
+- Added a couple 'missing' `sf::Vector2` and `sf::Vector3` overloads so that you can write `sf::Vector2f(5.f, 5.f) * sf::Vector2f(2.f, 2.f)` and  `sf::Vector2f(5.f, 5.f) / sf::Vector2f(2.f, 2.f)`
