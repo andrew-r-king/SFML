@@ -195,10 +195,6 @@ GlxContext::~GlxContext()
 #endif
         }
 
-#ifndef SFML_CUSTOM_WINDOW
-    glXDestroyContext(m_display, m_context);
-#endif
-
 #if defined(GLX_DEBUGGING)
         if (glxErrorOccurred)
             err() << "GLX error in GlxContext::~GlxContext()" << std::endl;
