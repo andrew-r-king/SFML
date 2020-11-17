@@ -52,7 +52,7 @@ namespace
         if (!initialized)
         {
             initialized = true;
-    
+
             // We don't check the return value since the extension
             // flags are cleared even if loading fails
             gladLoaderLoadGLX(display, screen);
@@ -188,8 +188,16 @@ GlxContext::~GlxContext()
 #endif
 
         if (glXGetCurrentContext() == m_context)
+        {
             glXMakeCurrent(m_display, None, NULL);
-        glXDestroyContext(m_display, m_context);
+#ifdef SFML_CUSTOM_WINDOW
+            glXDestroyContext(m_display, m_context);
+#endif
+        }
+
+#ifndef SFML_CUSTOM_WINDOW
+    glXDestroyContext(m_display, m_context);
+#endif
 
 #if defined(GLX_DEBUGGING)
         if (glxErrorOccurred)
