@@ -168,11 +168,8 @@ void WindowBase::create(WindowHandle handle)
 void WindowBase::close()
 {
     // Delete the window implementation
-    if (m_impl)
-    {
-        delete m_impl;
-        m_impl = NULL;
-    }
+    delete m_impl;
+    m_impl = NULL;
 
     // Update the fullscreen window
     if (this == getFullscreenWindow())

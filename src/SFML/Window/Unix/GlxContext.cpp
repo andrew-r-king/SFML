@@ -188,12 +188,8 @@ GlxContext::~GlxContext()
 #endif
 
         if (glXGetCurrentContext() == m_context)
-        {
             glXMakeCurrent(m_display, None, NULL);
-#ifdef SFML_CUSTOM_WINDOW
-            glXDestroyContext(m_display, m_context);
-#endif
-        }
+        glXDestroyContext(m_display, m_context);
 
 #if defined(GLX_DEBUGGING)
         if (glxErrorOccurred)
