@@ -96,10 +96,11 @@ void ensureThreadHasPool(void)
 void drainThreadPool(void)
 {
     void* data = pthread_getspecific(poolKey);
-    assert(data != NULL);
-
-    // Drain the pool but keep it alive by creating a new one
-    destroyPool(data);
-    createNewPool();
+    if (data != NULL)
+    {
+        // Drain the pool but keep it alive by creating a new one
+        destroyPool(data);
+        createNewPool();
+    }
 }
 
