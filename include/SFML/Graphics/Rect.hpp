@@ -172,6 +172,39 @@ public:
     constexpr sf::Vector2<T> getSize() const noexcept;
 
     ////////////////////////////////////////////////////////////
+    /// \relates Rect
+    /// \brief Overload of binary operator ==
+    ///
+    /// This operator compares strict equality between two rectangles.
+    ///
+    /// \param left  Left operand (a rectangle)
+    /// \param right Right operand (a rectangle)
+    ///
+    /// \return True if \a left is equal to \a right
+    ///
+    ////////////////////////////////////////////////////////////
+    constexpr bool operator ==(const Rect<T>& right) const noexcept;
+
+    ////////////////////////////////////////////////////////////
+    /// \relates Rect
+    /// \brief Overload of binary operator !=
+    ///
+    /// This operator compares strict difference between two rectangles.
+    ///
+    /// \param left  Left operand (a rectangle)
+    /// \param right Right operand (a rectangle)
+    ///
+    /// \return True if \a left is not equal to \a right
+    ///
+    ////////////////////////////////////////////////////////////
+    constexpr bool operator !=(const Rect<T>& right) const noexcept;
+
+    constexpr bool operator ==(const T& right) const noexcept;
+
+    constexpr bool operator !=(const T& right) const noexcept;
+
+
+    ////////////////////////////////////////////////////////////
     // Member data
     ////////////////////////////////////////////////////////////
     T left = static_cast<T>(0);   //!< Left coordinate of the rectangle
@@ -179,36 +212,6 @@ public:
     T width = static_cast<T>(0);  //!< Width of the rectangle
     T height = static_cast<T>(0); //!< Height of the rectangle
 };
-
-////////////////////////////////////////////////////////////
-/// \relates Rect
-/// \brief Overload of binary operator ==
-///
-/// This operator compares strict equality between two rectangles.
-///
-/// \param left  Left operand (a rectangle)
-/// \param right Right operand (a rectangle)
-///
-/// \return True if \a left is equal to \a right
-///
-////////////////////////////////////////////////////////////
-template <typename T>
-constexpr bool operator ==(const Rect<T>& left, const Rect<T>& right) noexcept;
-
-////////////////////////////////////////////////////////////
-/// \relates Rect
-/// \brief Overload of binary operator !=
-///
-/// This operator compares strict difference between two rectangles.
-///
-/// \param left  Left operand (a rectangle)
-/// \param right Right operand (a rectangle)
-///
-/// \return True if \a left is not equal to \a right
-///
-////////////////////////////////////////////////////////////
-template <typename T>
-constexpr bool operator !=(const Rect<T>& left, const Rect<T>& right) noexcept;
 
 // Create typedefs for the most common types
 using IntRect = Rect<int>;

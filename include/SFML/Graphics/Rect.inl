@@ -21,6 +21,7 @@
 // 3. This notice may not be removed or altered from any source distribution.
 //
 ////////////////////////////////////////////////////////////
+#include <SFML/Graphics/Rect.hpp>
 
 
 namespace sf
@@ -146,18 +147,30 @@ constexpr Vector2<T> Rect<T>::getSize() const noexcept
 
 ////////////////////////////////////////////////////////////
 template <typename T>
-constexpr bool operator ==(const Rect<T>& left, const Rect<T>& right) noexcept
+constexpr bool Rect<T>::operator ==(const Rect<T>& right) const noexcept
 {
-    return (left.left == right.left) && (left.width == right.width) &&
-           (left.top == right.top) && (left.height == right.height);
+    return (left == right.left) && (width == right.width) &&
+           (top == right.top) && (height == right.height);
 }
 
 
 ////////////////////////////////////////////////////////////
 template <typename T>
-constexpr bool operator !=(const Rect<T>& left, const Rect<T>& right) noexcept
+constexpr bool Rect<T>::operator !=(const Rect<T>& right) const noexcept
 {
     return !(left == right);
+}
+
+template <typename T>
+constexpr bool Rect<T>::operator ==(const T& right) const noexcept
+{
+    return (left == right) && (width == right) && (top == right) && (height == right);
+}
+
+template <typename T>
+constexpr bool Rect<T>::operator !=(const T& right) const noexcept
+{
+    return !(*this == right);
 }
 
 } // namespace sf
