@@ -164,7 +164,7 @@ constexpr bool Rect<T>::operator !=(const Rect<T>& right) const noexcept
 template <typename T>
 constexpr bool Rect<T>::operator ==(const T& right) const noexcept
 {
-    return (left == right) && (width == right) && (top == right) && (height == right);
+    return (left == right.left) && (width == right.width) && (top == right.top) && (height == right.height);
 }
 
 template <typename T>
