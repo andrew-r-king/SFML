@@ -199,9 +199,9 @@ public:
     ////////////////////////////////////////////////////////////
     constexpr bool operator !=(const Rect<T>& right) const noexcept;
 
-    // constexpr bool operator ==(const T& right) const noexcept;
+    constexpr bool operator ==(const T& right) const noexcept;
 
-    // constexpr bool operator !=(const T& right) const noexcept;
+    constexpr bool operator !=(const T& right) const noexcept;
 
 
     ////////////////////////////////////////////////////////////

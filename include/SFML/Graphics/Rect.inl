@@ -158,19 +158,19 @@ constexpr bool Rect<T>::operator ==(const Rect<T>& right) const noexcept
 template <typename T>
 constexpr bool Rect<T>::operator !=(const Rect<T>& right) const noexcept
 {
-    return !(left == right);
+    return !(*this == right);
 }
 
-/*template <typename T>
+template <typename T>
 constexpr bool Rect<T>::operator ==(const T& right) const noexcept
 {
-    return (left == right.left) && (width == right.width) && (top == right.top) && (height == right.height);
+    return (left == right) && (width == right) && (top == right) && (height == right);
 }
 
 template <typename T>
 constexpr bool Rect<T>::operator !=(const T& right) const noexcept
 {
     return !(*this == right);
-}*/
+}
 
 } // namespace sf
