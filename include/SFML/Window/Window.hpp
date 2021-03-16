@@ -116,7 +116,7 @@ public:
     /// \param style    %Window style, a bitwise OR combination of sf::Style enumerators
     ///
     ////////////////////////////////////////////////////////////
-    virtual void create(VideoMode mode, const String& title, Uint32 style = Style::Default);
+    virtual void create(VideoMode mode, const String& title, Uint32 style = Style::Default) override;
 
     ////////////////////////////////////////////////////////////
     /// \brief Create (or recreate) the window
@@ -154,7 +154,8 @@ public:
     /// \param settings Additional settings for the underlying OpenGL context
     ///
     ////////////////////////////////////////////////////////////
-    virtual void create(priv::WindowImpl* impl, bool isFullscreen, VideoMode mode, const ContextSettings& settings);
+    using WindowBase::createWithCustomImpl;
+    virtual void createWithCustomImpl(priv::WindowImpl* impl, bool isFullscreen, VideoMode mode = VideoMode(), const ContextSettings& settings = ContextSettings());
 
     ////////////////////////////////////////////////////////////
     /// \brief Create (or recreate) the window from an existing control
@@ -166,7 +167,7 @@ public:
     /// \param handle   Platform-specific handle of the control
     ///
     ////////////////////////////////////////////////////////////
-    virtual void create(WindowHandle handle);
+    virtual void create(WindowHandle handle) override;
 
     ////////////////////////////////////////////////////////////
     /// \brief Create (or recreate) the window from an existing control
@@ -195,7 +196,7 @@ public:
     /// and will have no effect on closed windows.
     ///
     ////////////////////////////////////////////////////////////
-    virtual void close();
+    virtual void close() override;
 
     ////////////////////////////////////////////////////////////
     /// \brief Get the settings of the OpenGL context of the window

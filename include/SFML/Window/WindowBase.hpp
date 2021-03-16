@@ -126,7 +126,7 @@ public:
     /// \param isFullscreen true if fullscreen
     ///
     ////////////////////////////////////////////////////////////
-    virtual void create(priv::WindowImpl* impl, bool isFullscreen);
+    virtual void createWithCustomImpl(priv::WindowImpl* impl, bool isFullscreen);
 
     ////////////////////////////////////////////////////////////
     /// \brief Create (or recreate) the window from an existing control

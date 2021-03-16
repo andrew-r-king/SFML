@@ -127,7 +127,7 @@ void Window::create(VideoMode mode, const String& title, Uint32 style, const Con
 
 
 ////////////////////////////////////////////////////////////
-void Window::create(priv::WindowImpl* impl, bool isFullscreen, VideoMode mode, const ContextSettings& settings)
+void Window::createWithCustomImpl(priv::WindowImpl* impl, bool isFullscreen, VideoMode mode, const ContextSettings& settings)
 {
     // Destroy the previous window implementation
     close();

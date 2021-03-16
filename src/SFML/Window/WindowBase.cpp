@@ -122,7 +122,7 @@ void WindowBase::create(VideoMode mode, const String& title, Uint32 style)
 
 
 ////////////////////////////////////////////////////////////
-void WindowBase::create(priv::WindowImpl* impl, bool isFullscreen)
+void WindowBase::createWithCustomImpl(priv::WindowImpl* impl, bool isFullscreen)
 {
     // Destroy the previous window implementation
     close();

@@ -145,7 +145,7 @@ constexpr const Transform& View::getTransform() const
     if (!m_transformUpdated)
     {
         // Rotation components
-        float angle  = m_rotation * Math::pi / 180.f;
+        float angle  = m_rotation * Math::pi_v<float> / 180.f;
         float cosine = static_cast<float>(std::cos(angle));
         float sine   = static_cast<float>(std::sin(angle));
         float tx     = -m_center.x * cosine - m_center.y * sine + m_center.x;
