@@ -921,27 +921,8 @@ JoystickState JoystickImpl::updateDInputBuffered()
                     }
                     else
                     {
-<<<<<<< HEAD
-                        m_state.axes[j] = 0;
-                    }
-                }
-                else if (j == Joystick::PovY)
-                {
-                    unsigned short value = LOWORD(events[i].dwData);
-
-                    if (value != 0xFFFF)
-                    {
-                        float angle = (static_cast<float>(value)) * Math::pi_v<float> / DI_DEGREES / 180.f;
-
-                        m_state.axes[j] = std::cos(angle) * 100.f;
-                    }
-                    else
-                    {
-                        m_state.axes[j] = 0.f;
-=======
                         m_state.axes[Joystick::PovX] = 0.f;
                         m_state.axes[Joystick::PovY] = 0.f;
->>>>>>> upstream/master
                     }
                 }
                 else
@@ -1016,26 +997,7 @@ JoystickState JoystickImpl::updateDInputPolled()
         {
             if (m_axes[i] != -1)
             {
-<<<<<<< HEAD
-                if (i == Joystick::PovX)
-                {
-                    unsigned short value = LOWORD(*reinterpret_cast<const DWORD*>(reinterpret_cast<const char*>(&joystate) + m_axes[i]));
-
-                    if (value != 0xFFFF)
-                    {
-                        float angle = (static_cast<float>(value)) * Math::pi_v<float> / DI_DEGREES / 180.f;
-
-                        state.axes[i] = std::sin(angle) * 100.f;
-                    }
-                    else
-                    {
-                        state.axes[i] = 0;
-                    }
-                }
-                else if (i == Joystick::PovY)
-=======
                 if ((i == Joystick::PovX) || (i == Joystick::PovY))
->>>>>>> upstream/master
                 {
                     unsigned short value = LOWORD(*reinterpret_cast<const DWORD*>(reinterpret_cast<const char*>(&joystate) + m_axes[i]));
 
