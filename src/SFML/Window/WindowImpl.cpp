@@ -107,10 +107,12 @@ WindowImpl* WindowImpl::create(WindowHandle handle)
 
 
 ////////////////////////////////////////////////////////////
-#ifndef SFML_CUSTOM_WINDOW
 WindowImpl::WindowImpl()
+#ifndef SFML_CUSTOM_WINDOW
     : m_joystickThreshold(0.1f)
+#endif
 {
+#ifndef SFML_CUSTOM_WINDOW
     // Get the initial joystick states
     JoystickManager::getInstance().update();
     for (unsigned int i = 0; i < Joystick::Count; ++i)
@@ -122,8 +124,8 @@ WindowImpl::WindowImpl()
     // Get the initial sensor states
     for (unsigned int i = 0; i < Sensor::Count; ++i)
         m_sensorValue[i] = Vector3f(0, 0, 0);
-}
 #endif
+}
 
 
 ////////////////////////////////////////////////////////////

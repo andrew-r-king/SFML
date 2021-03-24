@@ -253,11 +253,7 @@ protected:
     /// \brief Default constructor
     ///
     ////////////////////////////////////////////////////////////
-#ifdef SFML_CUSTOM_WINDOW
-    WindowImpl() = default;
-#else
     WindowImpl();
-#endif
 
     ////////////////////////////////////////////////////////////
     /// \brief Push a new event into the event queue
