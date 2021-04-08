@@ -73,6 +73,8 @@ public:
 		const float a10, const float a11, const float a12,
 		const float a20, const float a21, const float a22);
 
+    void setMatrix(const Matrix4x4& inValue) noexcept;
+
     ////////////////////////////////////////////////////////////
     /// \brief Return the transform as a 4x4 matrix
     ///

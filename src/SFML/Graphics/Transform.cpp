@@ -62,6 +62,12 @@ Transform::Transform(const float a00, const float a01, const float a02,
     };
 }
 
+////////////////////////////////////////////////////////////
+void Transform::setMatrix(const Matrix4x4& inValue) noexcept
+{
+    m_matrix = inValue;
+}
+
 
 ////////////////////////////////////////////////////////////
 const Transform::Matrix4x4& Transform::getMatrix() const noexcept
