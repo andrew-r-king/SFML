@@ -33,6 +33,7 @@
 #include <SFML/Graphics/Export.hpp>
 #include <SFML/Graphics/Rect.hpp>
 #include <SFML/System/Vector2.hpp>
+#include <SFML/System/Vector3.hpp>
 
 
 namespace sf
@@ -121,6 +122,8 @@ public:
     ////////////////////////////////////////////////////////////
     Vector2f transformPoint(const float x, const float y) const noexcept;
 
+    Vector3f transformPoint(const float x, const float y, const float z) const noexcept;
+
     ////////////////////////////////////////////////////////////
     /// \brief Transform a 2D point
     ///
@@ -136,6 +139,8 @@ public:
     ///
     ////////////////////////////////////////////////////////////
     Vector2f transformPoint(const Vector2f& point) const noexcept;
+
+    Vector3f transformPoint(const Vector3f& point) const noexcept;
 
     ////////////////////////////////////////////////////////////
     /// \brief Transform a rectangle
@@ -448,6 +453,8 @@ Transform& operator *=(Transform& left, const Transform& right) noexcept;
 ///
 ////////////////////////////////////////////////////////////
 Vector2f operator *(const Transform& left, const Vector2f& right) noexcept;
+
+Vector3f operator *(const Transform& left, const Vector3f& right) noexcept;
 
 ////////////////////////////////////////////////////////////
 /// \relates sf::Transform

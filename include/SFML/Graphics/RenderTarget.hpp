@@ -37,6 +37,7 @@
 #include <SFML/Graphics/RenderStates.hpp>
 #include <SFML/Graphics/PrimitiveType.hpp>
 #include <SFML/Graphics/Vertex.hpp>
+#include <SFML/Graphics/Vertex3D.hpp>
 #include <SFML/System/NonCopyable.hpp>
 
 
@@ -247,6 +248,18 @@ public:
     ///
     ////////////////////////////////////////////////////////////
     void draw(const Vertex* vertices, std::size_t vertexCount,
+              PrimitiveType type, const RenderStates& states = RenderStates::Default);
+
+    ////////////////////////////////////////////////////////////
+    /// \brief Draw primitives defined by an array of vertices (3D)
+    ///
+    /// \param vertices    Pointer to the vertices (3D)
+    /// \param vertexCount Number of vertices in the array
+    /// \param type        Type of primitives to draw
+    /// \param states      Render states to use for drawing
+    ///
+    ////////////////////////////////////////////////////////////
+    void draw(const Vertex3D* vertices, std::size_t vertexCount,
               PrimitiveType type, const RenderStates& states = RenderStates::Default);
 
     ////////////////////////////////////////////////////////////
@@ -467,6 +480,7 @@ private:
         bool      texCoordsArrayEnabled; //!< Is GL_TEXTURE_COORD_ARRAY client state enabled?
         bool      useVertexCache; //!< Did we previously use the vertex cache?
         Vertex    vertexCache[VertexCacheSize]; //!< Pre-transformed vertices cache
+        Vertex3D  vertex3DCache[VertexCacheSize]; //!< Pre-transformed vertices cache
     };
 
     ////////////////////////////////////////////////////////////
