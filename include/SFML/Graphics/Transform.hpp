@@ -74,6 +74,7 @@ public:
 		const float a20, const float a21, const float a22);
 
     void setMatrix(const Matrix4x4& inValue) noexcept;
+    void setMatrix(const float* inValue) noexcept;
 
     ////////////////////////////////////////////////////////////
     /// \brief Return the transform as a 4x4 matrix

@@ -68,6 +68,14 @@ void Transform::setMatrix(const Matrix4x4& inValue) noexcept
     m_matrix = inValue;
 }
 
+////////////////////////////////////////////////////////////
+void Transform::setMatrix(const float* inValue) noexcept
+{
+    for (std::size_t i= 0; i< m_matrix.size(); ++i)
+    {
+        m_matrix[i] = inValue[i];
+    }
+}
 
 ////////////////////////////////////////////////////////////
 const Transform::Matrix4x4& Transform::getMatrix() const noexcept
