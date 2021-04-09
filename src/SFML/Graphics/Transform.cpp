@@ -123,21 +123,24 @@ Vector2f Transform::transformPoint(const float x, const float y) const noexcept
 ////////////////////////////////////////////////////////////
 Vector3f Transform::transformPoint(const float x, const float y, const float z) const noexcept
 {
-    return Vector3f(m_matrix[0] * x + m_matrix[4] * y + m_matrix[12],
-                    m_matrix[1] * x + m_matrix[5] * y + m_matrix[13],
-                    m_matrix[2] * x + m_matrix[6] * y + m_matrix[14]);
+    return Vector3f(m_matrix[0] * x + m_matrix[4] * y + m_matrix[8]  * z + m_matrix[12],
+                    m_matrix[1] * x + m_matrix[5] * y + m_matrix[9]  * z + m_matrix[13],
+                    m_matrix[2] * x + m_matrix[6] * y + m_matrix[10] * z + m_matrix[14]);
 }
 
 ////////////////////////////////////////////////////////////
 Vector2f Transform::transformPoint(const Vector2f& point) const noexcept
 {
-    return transformPoint(point.x, point.y);
+    return Vector2f(m_matrix[0] * point.x + m_matrix[4] * point.y + m_matrix[12],
+                    m_matrix[1] * point.x + m_matrix[5] * point.y + m_matrix[13]);
 }
 
 ////////////////////////////////////////////////////////////
 Vector3f Transform::transformPoint(const Vector3f& point) const noexcept
 {
-    return transformPoint(point.x, point.y, point.z);
+    return Vector3f(m_matrix[0] * point.x + m_matrix[4] * point.y + m_matrix[8]  * point.z + m_matrix[12],
+                    m_matrix[1] * point.x + m_matrix[5] * point.y + m_matrix[9]  * point.z + m_matrix[13],
+                    m_matrix[2] * point.x + m_matrix[6] * point.y + m_matrix[10] * point.z + m_matrix[14]);
 }
 
 
