@@ -676,6 +676,14 @@ void RenderTarget::applyCurrentView()
 
 
 ////////////////////////////////////////////////////////////
+void RenderTarget::applyPointSize(const float pointSize)
+{
+    glCheck(glPointSize(pointSize));
+    m_cache.lastPointSize = pointSize;
+}
+
+
+////////////////////////////////////////////////////////////
 void RenderTarget::applyBlendMode(const BlendMode& mode)
 {
     // Apply the blend mode, falling back to the non-separate versions if necessary
@@ -776,6 +784,10 @@ void RenderTarget::setupDraw(bool useVertexCache, const RenderStates& states)
     // Apply the view
     if (!m_cache.enable || m_cache.viewChanged)
         applyCurrentView();
+
+    // Apply the point size
+    if (!m_cache.enable || (states.pointSize != m_cache.lastPointSize))
+        applyPointSize(states.pointSize);
 
     // Apply the blend mode
     if (!m_cache.enable || (states.blendMode != m_cache.lastBlendMode))

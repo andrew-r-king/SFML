@@ -406,6 +406,14 @@ private:
     void applyCurrentView();
 
     ////////////////////////////////////////////////////////////
+    /// \brief Apply a new point size (default: 1.0f)
+    ///
+    /// \param mode Blending mode to apply
+    ///
+    ////////////////////////////////////////////////////////////
+    void applyPointSize(const float pointSize);
+
+    ////////////////////////////////////////////////////////////
     /// \brief Apply a new blending mode
     ///
     /// \param mode Blending mode to apply
@@ -477,6 +485,7 @@ private:
         bool      viewChanged;    //!< Has the current view changed since last draw?
         BlendMode lastBlendMode;  //!< Cached blending mode
         Uint64    lastTextureId;  //!< Cached texture
+        float     lastPointSize;  //!< Cached point size
         bool      texCoordsArrayEnabled; //!< Is GL_TEXTURE_COORD_ARRAY client state enabled?
         bool      useVertexCache; //!< Did we previously use the vertex cache?
         Vertex    vertexCache[VertexCacheSize]; //!< Pre-transformed vertices cache
